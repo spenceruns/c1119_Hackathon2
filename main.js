@@ -1,5 +1,6 @@
-document.ready(initializeApp);
+$(document).ready(initializeApp);
 
-initializeApp() {
-
+function initializeApp() {
+  var groupFinderPage = new GroupFinder();
+  $("#group-finder").click(groupFinderPage.render);
 }
