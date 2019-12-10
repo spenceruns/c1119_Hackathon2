@@ -47,6 +47,80 @@ button {
   background-color: rgb(13, 213, 13);
 }
 
+/* GroupFinder styling */
+#group-finder-modal-container {
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#group-finder-modal {
+  position: relative;
+  background-color: hotpink;
+  width: 80%;
+  height: 80%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+#group-finder-modal-exit-button {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  background-color: greenyellow;
+}
+#group-finder-modal-header {
+  background-color: burlywood;
+  height: 15%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#group-finder-modal-header > * {
+  font-size: 1rem;
+}
+#group-finder-modal-header > button {
+  width: 15%;
+  height: 40%;
+}
+#group-finder-modal-body {
+  height: 85%;
+  width: 100%;
+  display: flex;
+}
+#group-name-sidebar {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: lightpink;
+}
+.meetup-group {
+  width: 100%;
+  height: 100%;
+  background-color: red;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.meetup-group:hover {
+  background-color: white;
+}
+#group-info-section {
+  width: 70%;
+  height: 100%;
+  background-color: lightgreen;
+}
+
 .character-modal {
   position: fixed;
   display: flex;
