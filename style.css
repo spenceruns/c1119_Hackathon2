@@ -3,7 +3,6 @@ body {
   padding: 0;
   height: 100vh;
   width: 100vw;
-  background: black;
 }
 
 .button-group {
@@ -46,4 +45,66 @@ button {
 
 #group-finder:hover {
   background-color: rgb(13, 213, 13);
+}
+
+.character-modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  height: 80%;
+  width: 80%;
+  background-color: black;
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal-content button {
+  margin: 5%;
+}
+
+.random-character:hover,
+.create-character:hover {
+  background-color: grey;
+}
+
+.cc-exit-button {
+  position: absolute;
+  color: white;
+  top: 4%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.character-name,
+.player-name {
+  height: 7%;
+  width: 50%;
+  margin: 5vh;
+  font-size: 2em;
+}
+
+.generate-random {
+  background-color: rgb(2, 211, 2);
+  height: 12%;
+  width: 50%;
+  font-size: 2em;
+  margin: 5vh;
+  cursor: pointer;
+}
+
+.generate-random:hover {
+  background-color: rgb(1, 140, 1);
 }

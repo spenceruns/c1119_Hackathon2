@@ -1,5 +1,5 @@
-document.ready(initializeApp);
+$(document).ready(initializeApp);
 
-initializeApp() {
-
+function initializeApp() {
+  var newCharacter = new CharacterCreator();
 }
