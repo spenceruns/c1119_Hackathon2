@@ -5,14 +5,18 @@ class CharacterCreator {
     this.races = null;
     this.classes = null;
     this.backgrounds = null;
+    this.alignments = ["Lawful Good", "Lawful Neutral", "Lawful Evil", "Neutral Good", "True Neutral", "Neutral Evil", "Chaotic Good", "Chaotic Neutral", "Chaotic Evil"];
     this.weapons = null;
     this.characterName = null;
     this.playerName = null;
-    this.addClickHandlers = this.addClickHandlers.bind(this);
-    this.makeRandomCharacterScreen = this.makeRandomCharacterScreen.bind(this);
     this.getCharacterData = this.getCharacterData.bind(this);
+    this.addClickHandlers = this.addClickHandlers.bind(this);
+    this.generateRandomCharacter = this.generateRandomCharacter.bind(this);
+    this.makeRandomCharacterScreen = this.makeRandomCharacterScreen.bind(this);
+    this.makeCreateCharacterScreen = this.makeCreateCharacterScreen.bind(this);
     this.getCharacterData();
     this.addClickHandlers();
+    this.testInput = null;
   }
 
   addClickHandlers() {
@@ -20,63 +24,45 @@ class CharacterCreator {
     this.$body.on("click", ".cc-exit-button", this.exitModal);
     this.$body.on("click", ".random-character", this.makeRandomCharacterScreen);
     this.$body.on("click", ".create-character", this.makeCreateCharacterScreen);
+    this.$body.on("click", ".generate-button", this.generateRandomCharacter);
   }
 
   getCharacterData() {
-    // var getClasses = {
-    //   dataType: "json",
-    //   url: "https://api.open5e.com/classes/",
-    //   method: "GET",
-    //   success: (function (response) {
-    //     this.classes = response;
-    //   }).bind(this),
-    //   error: function (error) {
-    //     console.log("error", error)
-    //   }
-    // };
-    // $.ajax(getClasses);
+    var getClasses = {
+      dataType: "json",
+      url: "https://api.open5e.com/classes/",
+      method: "GET",
+      success: response => this.classes = response.results,
+      error: error => console.log("error", error),
+    };
+    $.ajax(getClasses);
 
-    var self = this;
     var getRaces = {
       dataType: "json",
       url: "https://api.open5e.com/races/",
       method: "GET",
-      success: function(response) {
-        self.races = response.results;
-        console.log("inside", self.races)
-      },
-      error: function (error) {
-        console.log("error", error)
-      }
+      success: response => this.races = response.results,
+      error: error => console.log("error", error),
     };
     $.ajax(getRaces);
-    console.log('this races', this.races)
 
-    // var getBackgrounds = {
-    //   dataType: "json",
-    //   url: "https://api.open5e.com/backgrounds/",
-    //   method: "GET",
-    //   success: (function (response) {
-    //     this.backgrounds = response;
-    //   }).bind(this),
-    //   error: function (error) {
-    //     console.log("error", error)
-    //   }
-    // };
-    // $.ajax(getBackgrounds);
+    var getBackgrounds = {
+      dataType: "json",
+      url: "https://api.open5e.com/backgrounds/",
+      method: "GET",
+      success: response => this.backgrounds = response.results,
+      error: error => console.log("error", error),
+    };
+    $.ajax(getBackgrounds);
 
-    // var getWeapons = {
-    //   dataType: "json",
-    //   url: "https://api.open5e.com/weapons/",
-    //   method: "GET",
-    //   success: (function (response) {
-    //     this.weapons = response;
-    //   }).bind(this),
-    //   error: function (error) {
-    //     console.log("error", error)
-    //   }
-    // };
-    // $.ajax(getWeapons);
+    var getWeapons = {
+      dataType: "json",
+      url: "https://api.open5e.com/weapons/",
+      method: "GET",
+      success: response => this.weapons = response.results,
+      error: error => console.log("error", error),
+    };
+    $.ajax(getWeapons);
   }
 
   render() {
@@ -94,9 +80,9 @@ class CharacterCreator {
   makeRandomCharacterScreen() {
     var $modalContent = $(".modal-content");
     $modalContent.empty();
-    var characterNameInput = $("<input>").addClass("character-name").attr("placeholder", "Character Name");
-    var playerNameInput = $("<input>").addClass("player-name").attr("placeholder", "Player Name");;
-    var randomButton = $("<button>").addClass("generate-random").text("Generate");
+    var characterNameInput = $("<input>").addClass("random-character-name").attr("placeholder", "Character Name");
+    var playerNameInput = $("<input>").addClass("random-player-name").attr("placeholder", "Player Name");;
+    var randomButton = $("<button>").addClass("generate-button").text("Generate");
     var exitButton = $("<div>").addClass("cc-exit-button").html("&times;");
     console.log(this.races);
 
@@ -106,13 +92,42 @@ class CharacterCreator {
   makeCreateCharacterScreen() {
     var $modalContent = $(".modal-content");
     $modalContent.empty();
-    var characterNameInput = $("<input>").addClass("character-name").attr("placeholder", "Character Name");
-    var playerNameInput = $("<input>").addClass("player-name").attr("placeholder", "Player Name");
-    console.log(this.races);
-    var createButton = $("<button>").addClass("generate-character").text("Generate");
+    var inputs = $("<div>").addClass("inputContainer");
+    var characterNameInput = $("<input>").addClass("create-character-name").attr("placeholder", "Character Name");
+    var playerNameInput = $("<input>").addClass("create-player-name").attr("placeholder", "Player Name");
+    var createButton = $("<button>").addClass("generate-button").text("Generate");
     var exitButton = $("<div>").addClass("cc-exit-button").html("&times;");
+    var raceSelect = $("<select>").addClass("raceSelect").attr("name", "Race");
+    var raceInput = $("<option>").text("Race...");
+    raceSelect.append(raceInput);
+    for (var index = 0; index < this.races.length; index++) {
+      raceInput = $("<option>").text(this.races[index].name);
+      raceSelect.append(raceInput);
+    }
+    var classSelect = $("<select>").addClass("classSelect");
+    var classInput = $("<option>").text("Class...");
+    classSelect.append(classInput);
+    for (var index = 0; index < this.classes.length; index++) {
+      classInput = $("<option>").text(this.classes[index].name);
+      classSelect.append(classInput);
+    }
+    var backgroundSelect = $("<select>").addClass("backgroundSelect");
+    var backgroundInput = $("<option>").text("Background...");
+    backgroundSelect.append(backgroundInput);
+    for (var index = 0; index < this.backgrounds.length; index++) {
+      var backgroundInput = $("<option>").text(this.backgrounds[index].name);
+      backgroundSelect.append(backgroundInput);
+    }
+    var alignmentSelect = $("<select>").addClass("alignmentSelect");
+    var alignmentInput = $("<option>").text("Alignment...");
+    alignmentSelect.append(alignmentInput);
+    for (var index = 0; index < this.alignments.length; index++) {
+      var alignmentInput = $("<option>").text(this.alignments[index]);
+      alignmentSelect.append(alignmentInput);
+    }
 
-    $modalContent.append(characterNameInput, playerNameInput, createButton, exitButton);
+    inputs.append(characterNameInput, playerNameInput, raceSelect, classSelect, backgroundSelect, alignmentSelect);
+    $modalContent.append(inputs, createButton, exitButton);
   }
 
   exitModal() {
@@ -143,6 +158,8 @@ class CharacterCreator {
   generateRandomCharacter() {
     this.characterName = $(".character-name").val();
     this.playerName = $(".player-name").val();
+    this.testInput = $(".alignmentSelect").val();
+    console.log(this.testInput);
     $(".modal-content").empty();
 
   }

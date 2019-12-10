@@ -88,15 +88,15 @@ button {
   cursor: pointer;
 }
 
-.character-name,
-.player-name {
+.random-character-name,
+.random-player-name {
   height: 7%;
   width: 50%;
   margin: 5vh;
   font-size: 2em;
 }
 
-.generate-random {
+.generate-button {
   background-color: rgb(2, 211, 2);
   height: 12%;
   width: 50%;
@@ -105,6 +105,27 @@ button {
   cursor: pointer;
 }
 
-.generate-random:hover {
+.generate-button:hover {
   background-color: rgb(1, 140, 1);
+}
+
+.inputContainer {
+  width: 80%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.create-character-name,
+.create-player-name,
+.raceSelect,
+.classSelect,
+.backgroundSelect,
+.alignmentSelect {
+  width: 40%;
+  height: 10%;
+  margin: 1%;
+  font-size: 1.5em;
 }
