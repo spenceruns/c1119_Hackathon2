@@ -12,11 +12,15 @@ class CharacterCreator {
     this.getCharacterData = this.getCharacterData.bind(this);
     this.addClickHandlers = this.addClickHandlers.bind(this);
     this.generateRandomCharacter = this.generateRandomCharacter.bind(this);
+    this.generateCreatedCharacter = this.generateCreatedCharacter.bind(this);
     this.makeRandomCharacterScreen = this.makeRandomCharacterScreen.bind(this);
     this.makeCreateCharacterScreen = this.makeCreateCharacterScreen.bind(this);
     this.getCharacterData();
     this.addClickHandlers();
-    this.testInput = null;
+    this.raceSelected = null;
+    this.classSelected = null;
+    this.backgroundSelected = null;
+    this.alignmentSelected = null;
   }
 
   addClickHandlers() {
@@ -24,7 +28,8 @@ class CharacterCreator {
     this.$body.on("click", ".cc-exit-button", this.exitModal);
     this.$body.on("click", ".random-character", this.makeRandomCharacterScreen);
     this.$body.on("click", ".create-character", this.makeCreateCharacterScreen);
-    this.$body.on("click", ".generate-button", this.generateRandomCharacter);
+    this.$body.on("click", ".generate-random-button", this.generateRandomCharacter);
+    this.$body.on("click", ".generate-created-button", this.generateCreatedCharacter);
   }
 
   getCharacterData() {
@@ -82,9 +87,8 @@ class CharacterCreator {
     $modalContent.empty();
     var characterNameInput = $("<input>").addClass("random-character-name").attr("placeholder", "Character Name");
     var playerNameInput = $("<input>").addClass("random-player-name").attr("placeholder", "Player Name");;
-    var randomButton = $("<button>").addClass("generate-button").text("Generate");
+    var randomButton = $("<button>").addClass("generate-random-button").text("Generate");
     var exitButton = $("<div>").addClass("cc-exit-button").html("&times;");
-    console.log(this.races);
 
     $modalContent.append(characterNameInput, playerNameInput, randomButton, exitButton);
   }
@@ -95,7 +99,7 @@ class CharacterCreator {
     var inputs = $("<div>").addClass("inputContainer");
     var characterNameInput = $("<input>").addClass("create-character-name").attr("placeholder", "Character Name");
     var playerNameInput = $("<input>").addClass("create-player-name").attr("placeholder", "Player Name");
-    var createButton = $("<button>").addClass("generate-button").text("Generate");
+    var createButton = $("<button>").addClass("generate-created-button").text("Generate");
     var exitButton = $("<div>").addClass("cc-exit-button").html("&times;");
     var raceSelect = $("<select>").addClass("raceSelect").attr("name", "Race");
     var raceInput = $("<option>").text("Race...");
@@ -156,11 +160,38 @@ class CharacterCreator {
   }
 
   generateRandomCharacter() {
-    this.characterName = $(".character-name").val();
-    this.playerName = $(".player-name").val();
-    this.testInput = $(".alignmentSelect").val();
-    console.log(this.testInput);
+    var randomRacePicker = Math.floor(Math.random() * 8);
+    var randomClassPicker = Math.floor(Math.random() * 11);
+    var randomBackgroundPicker = Math.floor(Math.random() * 2);
+    var randomAlignmentPicker = Math.floor(Math.random() * 8);
+    this.characterName = $(".random-character-name").val();
+    this.playerName = $(".random-player-name").val();
+    this.raceSelected = this.races[randomRacePicker].name;
+    this.classSelected = this.classes[randomClassPicker].name;
+    this.backgroundSelected = this.backgrounds[randomBackgroundPicker].name;
+    this.alignmentSelected = this.alignments[randomAlignmentPicker];
+    console.log(this.characterName);
+    console.log(this.playerName);
+    console.log(this.raceSelected);
+    console.log(this.classSelected);
+    console.log(this.backgroundSelected);
+    console.log(this.alignmentSelected);
     $(".modal-content").empty();
+  }
 
+  generateCreatedCharacter() {
+    this.characterName = $(".create-character-name").val();
+    this.playerName = $(".create-player-name").val();
+    this.raceSelected = $(".raceSelect").val();
+    this.classSelected = $(".classSelect").val();
+    this.backgroundSelected = $(".backgroundSelect").val();
+    this.alignmentSelected = $(".alignmentSelect").val();
+    console.log(this.characterName);
+    console.log(this.playerName);
+    console.log(this.raceSelected);
+    console.log(this.classSelected);
+    console.log(this.backgroundSelected);
+    console.log(this.alignmentSelected);
+    $(".modal-content").empty();
   }
 }

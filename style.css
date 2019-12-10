@@ -96,7 +96,8 @@ button {
   font-size: 2em;
 }
 
-.generate-button {
+.generate-created-button,
+.generate-random-button {
   background-color: rgb(2, 211, 2);
   height: 12%;
   width: 50%;
@@ -105,7 +106,8 @@ button {
   cursor: pointer;
 }
 
-.generate-button:hover {
+.generate-created-button:hover,
+.generate-random-button:hover {
   background-color: rgb(1, 140, 1);
 }
 
