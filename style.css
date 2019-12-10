@@ -3,7 +3,6 @@ body {
   padding: 0;
   height: 100vh;
   width: 100vw;
-  background: white;
 }
 
 .button-group {
@@ -120,4 +119,99 @@ button {
   width: 70%;
   height: 100%;
   background-color: lightgreen;
+}
+
+.character-modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  height: 80%;
+  width: 80%;
+  background-color: black;
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal-content button {
+  margin: 5%;
+}
+
+.random-character:hover,
+.create-character:hover {
+  background-color: grey;
+}
+
+.cc-exit-button {
+  position: absolute;
+  color: white;
+  top: 4%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.random-character-name,
+.random-player-name {
+  height: 7%;
+  width: 50%;
+  margin: 5vh;
+  font-size: 2em;
+}
+
+.generate-created-button,
+.generate-random-button {
+  background-color: rgb(2, 211, 2);
+  height: 12%;
+  width: 50%;
+  font-size: 2em;
+  margin: 5vh;
+  cursor: pointer;
+}
+
+.generate-created-button:hover,
+.generate-random-button:hover {
+  background-color: rgb(1, 140, 1);
+}
+
+.inputContainer {
+  width: 80%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.create-character-name,
+.create-player-name,
+.raceSelect,
+.classSelect,
+.backgroundSelect,
+.alignmentSelect {
+  width: 40%;
+  height: 10%;
+  margin: 1%;
+  font-size: 1.5em;
+}
+
+.main-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 77.2%;
+  height: 100%;
+  background-color: white;
+  border: 1px solid black;
 }
