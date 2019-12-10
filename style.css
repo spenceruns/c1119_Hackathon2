@@ -131,3 +131,13 @@ button {
   margin: 1%;
   font-size: 1.5em;
 }
+
+.main-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 77.2%;
+  height: 100%;
+  background-color: white;
+  border: 1px solid black;
+}
