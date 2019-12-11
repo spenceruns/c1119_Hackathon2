@@ -5,11 +5,13 @@ class GroupFinder {
 
     // TODO: Remove this and replace with underscores when committing to GitHub
     this.meetupDotComAPIKey = "18b7135c3c7e616338b15512e1a26";
-    this.groupsArray = [];
+    this.meetupGroups = [];
 
     // Bindings
     this.render = this.render.bind(this);
     this.queryMeetupAPI = this.queryMeetupAPI.bind(this);
+    this.createMeetupGroupDivs = this.createMeetupGroupDivs.bind(this);
+    this.showClickedGroupInfo = this.showClickedGroupInfo.bind(this);
   }
 
   createQueryURL() {
@@ -47,21 +49,60 @@ class GroupFinder {
   }
 
   createMeetupGroupDivs(response) {
-    // We want to create X number of shield divs on our bottom section
-    this.groupsArray = response.results;
+    var $groupNameSidebar = $("#group-name-sidebar");
+    $groupNameSidebar.empty();
 
-    for (var groupIndex = 0; groupIndex < this.groupsArray.length; groupIndex++) {
-      var groupName = this.groupsArray[groupIndex].name;
+    // We want to create X number of shield divs on our bottom section
+    this.meetupGroups = response.results;
+
+    for (var groupIndex = 0; groupIndex < this.meetupGroups.length; groupIndex++) {
+      var groupName = this.meetupGroups[groupIndex].name;
       var $meetupGroup = $("<div>", {
         text: groupName,
         class: "meetup-group",
         "data-group-index": groupIndex,
-        click: function() {
-          console.log("Hello");
-        }
+        click: this.showClickedGroupInfo,
       })
-      $("#group-name-sidebar").append($meetupGroup);
+      $groupNameSidebar.append($meetupGroup);
     }
+  }
+
+  showClickedGroupInfo(event) {
+    var $groupInfoSection = $("#group-info-section");
+    $groupInfoSection.empty();
+    var $clickedGroupDiv = $(event.currentTarget);
+    var clickedGroupDivIndex = $clickedGroupDiv.attr("data-group-index");
+    var clickedGroupInfo = this.meetupGroups[clickedGroupDivIndex];
+    var $clickedGroupName = $("<h2>", {
+      id: "group-name",
+      text: clickedGroupInfo.name
+    });
+    var $clickedGroupDescription = $("<div>", {
+      id: "group-description",
+      html: "<strong>Description: </strong>" + clickedGroupInfo.description
+    });
+    var $clickedGroupLinkContainer = $("<div>", {
+      id: "group-link-container",
+      html: "<strong>Link: </strong>",
+      style: "display: inline"
+    });
+    var $clickedGroupLink = $("<a>", {
+      id: "group-link",
+      target: "blank",
+      href: clickedGroupInfo.link,
+      text: clickedGroupInfo.link
+    });
+    $clickedGroupLinkContainer.append($clickedGroupLink);
+    var $clickedGroupLocation = $("<div>", {
+      id: "group-location",
+      html: "<strong>Location: </strong>" + clickedGroupInfo.city + ", " + clickedGroupInfo.state,
+    })
+    var $clickedGroupOrganizerName = $("<div>", {
+      id: "group-organizer-name",
+      html: "<strong>Organizer Name: </strong>" + clickedGroupInfo.organizer_name,
+    })
+    $groupInfoSection.append($clickedGroupName, $clickedGroupDescription, $clickedGroupLinkContainer, $clickedGroupLocation, $clickedGroupOrganizerName);
+    console.log(clickedGroupInfo);
   }
 
   closeGroupFinderModal() {

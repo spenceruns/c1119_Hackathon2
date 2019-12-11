@@ -47,7 +47,7 @@ button {
   background-color: rgb(13, 213, 13);
 }
 
-/* GroupFinder styling */
+/********** GroupFinder styling **********/
 #group-finder-modal-container {
   background-color: rgba(0,0,0,0.5);
   width: 100%;
@@ -60,6 +60,7 @@ button {
   align-items: center;
 }
 #group-finder-modal {
+  font-family: Arial;
   position: relative;
   background-color: hotpink;
   width: 80%;
@@ -91,8 +92,8 @@ button {
   height: 40%;
 }
 #group-finder-modal-body {
-  height: 85%;
   width: 100%;
+  height: 85%;
   display: flex;
 }
 #group-name-sidebar {
@@ -104,22 +105,50 @@ button {
 }
 .meetup-group {
   width: 100%;
-  height: 100%;
+  height: 10%;
   background-color: red;
+  position: relative;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.meetup-group:hover {
-  background-color: white;
-}
+/* Idea for hover triangle
+  .meetup-group:active:before {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 0;
+    border-top: 29.44px solid transparent;
+    border-bottom: 29.44px solid transparent;
+    border-left: 29.44px solid red;
+  }
+*/
 #group-info-section {
   width: 70%;
   height: 100%;
   background-color: lightgreen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+#group-info-section > * {
+  margin-top: 3%;
+  width: 90%;
+}
+#group-name {
+  margin: 0;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#group-description {
+  margin-top: 0;
+}
+
+/******************************/
 
 .character-modal {
   position: fixed;
