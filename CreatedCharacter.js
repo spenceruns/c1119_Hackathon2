@@ -60,9 +60,10 @@ class CreatedCharacter {
     this.selectedStats.backgroundSelected = this.backgrounds[$(".backgroundSelect").val()];
     this.selectedStats.alignmentSelected = this.alignments[$(".alignmentSelect").val()];
     this.selectedStats.weapons = this.weapons;
-    var newCharacter = new GeneratedCharacter(this.selectedStats);
     $(".character-modal").empty();
+    var newCharacter = new GeneratedCharacter(this.selectedStats);
     var exitButton = $("<div>").addClass("cc-exit-button").html("&times;");
-    $(".character-modal").append(exitButton);
+    var printButton = $("<button>").addClass("print-button").text("Print Character Sheet");
+    $(".character-modal").append(exitButton, printButton);
   }
 }
