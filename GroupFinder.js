@@ -22,7 +22,7 @@ class GroupFinder {
     var queryRadius = $("#meetup-radius-input").val();
 
     // Construct actual query
-    var queryURLBase = "https://api.meetup.com/groups?key=" + this.meetupDotComAPIKey + "&sign=true&page=10&topic=dnd";
+    var queryURLBase = "https://api.meetup.com/groups?key=" + this.meetupDotComAPIKey + "&sign=true&page=9&topic=dnd";
     var cityURLParameter = "&city=" + queryCity;
     var stateURLParameter = "&state=" + queryState;
     var countryURLParameter = "&country=" + queryCountry;
@@ -49,8 +49,8 @@ class GroupFinder {
   }
 
   createMeetupGroupDivs(response) {
-    var $groupNameSidebar = $("#group-name-sidebar");
-    $groupNameSidebar.empty();
+    var $groupNameSection = $("#group-name-section");
+    $groupNameSection.empty();
 
     // We want to create X number of shield divs on our bottom section
     this.meetupGroups = response.results;
@@ -63,7 +63,7 @@ class GroupFinder {
         "data-group-index": groupIndex,
         click: this.showClickedGroupInfo,
       })
-      $groupNameSidebar.append($meetupGroup);
+      $groupNameSection.append($meetupGroup);
     }
   }
 
@@ -71,9 +71,10 @@ class GroupFinder {
     var $groupInfoSection = $("#group-info-section");
     $groupInfoSection.empty();
     var $clickedGroupDiv = $(event.currentTarget);
+    $clickedGroupDiv.addClass("meetup-group-selected");
     var clickedGroupDivIndex = $clickedGroupDiv.attr("data-group-index");
     var clickedGroupInfo = this.meetupGroups[clickedGroupDivIndex];
-    var $clickedGroupName = $("<h2>", {
+    var $clickedGroupName = $("<h3>", {
       id: "group-name",
       text: clickedGroupInfo.name
     });
@@ -146,7 +147,7 @@ class GroupFinder {
     // Create modal exit button
     var $groupFinderModalExitButton = $("<div>", {
       id: "group-finder-modal-exit-button",
-      text: "X",
+      text: "x",
       click: this.closeGroupFinderModal,
     })
 
@@ -154,13 +155,13 @@ class GroupFinder {
     var $groupFinderModalBody = $("<div>", {
       id: "group-finder-modal-body"
     })
-    var $groupNameSidebar = $("<div>", {
-      id: "group-name-sidebar"
+    var $groupNameSection = $("<div>", {
+      id: "group-name-section"
     })
     var $groupInfoSection = $("<div>", {
       id: "group-info-section"
     })
-    $groupFinderModalBody.append($groupNameSidebar, $groupInfoSection);
+    $groupFinderModalBody.append($groupNameSection, $groupInfoSection);
 
     // Create a modal and append modal header to modal
     var $groupFinderModal = $("<div>", {
