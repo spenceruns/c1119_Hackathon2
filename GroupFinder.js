@@ -46,6 +46,8 @@ class GroupFinder {
         console.log("An error was returned from the server:", error);
       }
     });
+    var loadingModal = $("<div>").addClass("loading-modal").text("Loading...");
+    $("#group-name-section").append(loadingModal);
   }
 
   createMeetupGroupDivs(response) {
@@ -147,7 +149,7 @@ class GroupFinder {
     // Create modal exit button
     var $groupFinderModalExitButton = $("<div>", {
       id: "group-finder-modal-exit-button",
-      text: "x",
+      html: "&times;",
       click: this.closeGroupFinderModal,
     })
 

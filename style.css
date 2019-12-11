@@ -76,6 +76,8 @@ button {
   position: absolute;
   top: 2%;
   right: 2%;
+  color: white;
+  cursor: pointer;
 }
 #group-finder-modal-header {
   background-color: rgb(35,18,11);
@@ -110,6 +112,20 @@ button {
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
+.loading-modal {
+  position: fixed;
+  width: 30%;
+  height: 20%;
+  background-color: white;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
 .meetup-group {
   padding: 4%;
   width: 23%;
