@@ -15,10 +15,35 @@
   <script src="main.js"></script>
 </head>
 <body>
+  <div class="map-container hidden">
+    <div class="map-background">
+      <div class="map-exit-button">&times;</div>
+      <div id="map"></div>
+      <!-- <div class="pac-card" id="pac-card">
+        <div>
+          <div id="title">
+            Adventure awaits.....
+          </div>
+        </div>
+        <div id="pac-container">
+          <input id="pac-input" type="text" placeholder="Enter a location">
+        </div>
+      </div>
+      <div id="map"></div>
+      <div id="infowindow-content">
+        <img src="" width="16" height="16" id="place-icon">
+        <span id="place-name" class="title"></span><br>
+        <span id="place-address"></span>
+      </div> -->
+    </div>
+  </div>
   <div class="button-group">
     <button id="character-creator">Character Creator</button>
     <button id="gameshop-finder">Gameshop Finder</button>
     <button id="group-finder">Group Finder</button>
   </div>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAida3l8h8mIi42Ru3iBSFFwmvQqxE_Ib0&libraries=places&callback=initMap"
+    async defer></script>
 </body>
 </html>
