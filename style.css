@@ -1,0 +1,648 @@
+* {
+  font-family: 'MedievalSharp', cursive;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("./assets/background-map.jpeg");
+  font-family: 'MedievalSharp', cursive;
+}
+
+.title-name {
+  width: 20%;
+  height: 25%;
+  background-image: url("./assets/burnt-paper.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  position: relative;
+  top: 1%;
+  left: 5%;
+}
+
+button {
+  width: 50%;
+  height: 20%;
+  cursor: pointer;
+  font-size: 3em;
+  border: 2px solid white;
+  outline: none;
+}
+
+#character-creator {
+  position: absolute;
+  top: 17%;
+  right: 14%;
+  height: 20vh;
+  width: 20vh;
+  background-image: url("./assets/button_forge.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  font-size: 3em;
+  color: white;
+}
+
+#character-creator:hover {
+  height: 30vh;
+  width: 30vh;
+  font-size: 4em;
+}
+
+#gameshop-finder {
+  position: absolute;
+  bottom: 17%;
+  right: 14%;
+  height: 20vh;
+  width: 20vh;
+  background-image: url("./assets/button_house.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  font-size: 3em;
+  color: white;
+}
+
+
+#gameshop-finder:hover {
+  height: 30vh;
+  width: 30vh;
+  font-size: 4em;
+}
+
+#group-finder {
+  position: absolute;
+  top: 43%;
+  left: 24%;
+  height: 20vh;
+  width: 20vh;
+  background-image: url("./assets/button_tavern.png");
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  font-size: 3em;
+  color: white;
+}
+
+#group-finder:hover {
+  height: 30vh;
+  width: 30vh;
+  font-size: 4em;
+}
+
+/********** GroupFinder styling **********/
+#group-finder-modal-container {
+  font-family: 'MedievalSharp', cursive;
+  background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#group-finder-modal {
+  font-family: Arial;
+  position: relative;
+  width: 80%;
+  height: 80%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+#group-finder-modal > * {
+  box-sizing: border-box;
+}
+#group-finder-modal-exit-button {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  color: white;
+  cursor: pointer;
+}
+#group-finder-modal-header {
+  background-color: rgb(35,18,11);
+  height: 15%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#group-finder-modal-header > * {
+  font-size: 1rem;
+}
+#group-finder-modal-header > button {
+  width: 15%;
+  height: 40%;
+}
+#group-finder-modal-body {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  background-image: url("./assets/notice-board.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+#group-name-section {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.loading-modal {
+  position: fixed;
+  width: 30%;
+  height: 20%;
+  background-color: white;
+  font-size: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+.meetup-group {
+  padding: 4%;
+  width: 23%;
+  height: 21%;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url("./assets/burnt-paper.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.meetup-group:hover {
+  background-color: rgba(250,250,210,0.8);
+  border-radius: 5px;
+}
+#group-info-section {
+  box-sizing: border-box;
+  margin-left: 6%;
+  padding: 1%;
+  width: 35%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  background-color: black;
+  color: white;
+}
+#group-info-section > * {
+  margin-top: 3%;
+  width: 90%;
+}
+#group-name {
+  margin: 0;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/******************************/
+
+/* Character Creation */
+
+.character-modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  font-family: 'MedievalSharp', cursive;
+  position: absolute;
+  height: 80%;
+  width: 80%;
+  background-color: black;
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.modal-content button {
+  margin: 5%;
+}
+
+.random-character:hover,
+.create-character:hover {
+  background-color: grey;
+}
+
+.cc-exit-button {
+  position: absolute;
+  color: white;
+  top: 4%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.print-button {
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+  background-color: rgb(65, 140, 254);
+  height: 10%;
+  width: 10%;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.print-button:hover {
+  background-color: rgb(5, 74, 250);
+}
+
+.random-character-name,
+.random-player-name {
+  height: 7%;
+  width: 50%;
+  margin: 5vh;
+  font-size: 2em;
+}
+
+.generate-created-button,
+.generate-random-button {
+  background-color: rgb(2, 211, 2);
+  height: 12%;
+  width: 50%;
+  font-size: 2em;
+  margin: 5vh;
+  cursor: pointer;
+}
+
+.generate-created-button:hover,
+.generate-random-button:hover {
+  background-color: rgb(1, 140, 1);
+}
+
+.inputContainer {
+  width: 80%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.create-character-name,
+.create-player-name,
+.raceSelect,
+.classSelect,
+.backgroundSelect,
+.alignmentSelect {
+  width: 40%;
+  height: 10%;
+  margin: 1%;
+  font-size: 1.5em;
+}
+
+/* Character Sheet Styling */
+#created-character {
+  width: 729px;
+  height: 964px;
+  background-color: white;
+}
+
+hr {
+  border: 1px solid black;
+  margin: 0;
+}
+
+.top-box {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+.character-name-info {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  border-right: 2px solid black;
+  margin-right: 5px;
+}
+
+.character-name-placeholder{
+  position: relative;
+  width: 85%;
+  font-size: 12px;
+  left: 10px;
+}
+
+.character-name {
+  position: relative;
+  font-weight: bold;
+  font-size: 25px;
+  left: 10px;
+}
+
+.other-info {
+  width: 53%;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-flow: wrap;
+}
+
+.info {
+  position: relative;
+  top: 12px;
+  height: 30%;
+  width: 50%;
+}
+
+.area {
+  font-size: 15px;
+}
+
+.placeholder {
+  font-size: 12px;
+}
+
+.bottom-box {
+  margin-top: 2%;
+  height: 78%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+}
+.stat-container {
+  width: 30%;
+  border-right: 2px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.base-stat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 75%;
+  height: 12%;
+}
+
+.modifier {
+  font-size: 35px;
+  border: 1px solid black;
+  border-radius: 50px;
+  text-align: center;
+  width: 60%;
+  margin: 5px;
+}
+.stat {
+  font-size: 20px;
+  border-radius: 40px;
+  border: 1px solid black;
+  width: 20%;
+  text-align: center;
+}
+
+.other-stats {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ac-inti,
+.speed-hitdice,
+.current-hitpoints {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap row;
+  width: 80%;
+  height: 10%;
+  font-size: 10px;
+}
+
+.ac,
+.inti,
+.speed,
+.hitdice,
+.current-HP,
+.total-HP {
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 40%;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weapons-and-info {
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.character-info {
+  width: 100%;
+  height: 32%;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.traits,
+.ideals,
+.bonds,
+.flaws {
+  width: 100%;
+  height: 22%;
+  text-align: left;
+  border-top: 1px solid black;
+}
+
+.weapons {
+  width: 100%;
+  height: 65%;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+}
+
+.weapon {
+  width: 100%;
+  height: 30%;
+  border-top: 1px solid black;
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: space-around;
+}
+
+.weapon-name,
+.weapon-dice,
+.weapon-type {
+  position: relative;
+  top: 18px;
+  width: 33.33%;
+}
+
+.weapon-prop {
+  position: relative;
+  top: 18px;
+  width: 100%;
+}
+
+.one,
+.two {
+  border-bottom: 1px solid black;
+}
+
+.move-up {
+  top: 0px;
+}
+
+/* Map styling */
+#map {
+  height: 80vh;
+  width: 80vh;
+}
+
+.map-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+}
+
+.map-background {
+  height: 90vh;
+  width: 90vh;
+  background: black;
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-exit-button {
+  position: relative;
+  bottom: 47%;
+  left: 92%;
+  color: white;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+.pac-card {
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Roboto;
+}
+
+#pac-container {
+  padding-bottom: 12px;
+  margin-right: 12px;
+}
+
+.pac-controls {
+  display: inline-block;
+  padding: 5px 11px;
+}
+
+.pac-controls label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+#title {
+  color: #fff;
+  background-color: #a59362;
+  font-size: 25px;
+  font-style: oblique;
+  font-weight: 500;
+  padding: 6px 12px;
+}

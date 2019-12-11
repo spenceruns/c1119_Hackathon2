@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=MedievalSharp&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://printjs-4de6.kxcdn.com/print.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DnD</title>
+  <script src="./JS_Files/GroupFinder.js"></script>
+  <script src="./JS_Files/CharacterCreatorScreen.js"></script>
+  <script src="./JS_Files/RandomCharacter.js"></script>
+  <script src="./JS_Files/CreatedCharacter.js"></script>
+  <script src="./JS_Files/GeneratedCharacter.js"></script>
+  <script src="main.js"></script>
+</head>
+<body>
+  <div class="map-container hidden">
+    <div class="map-background">
+      <div class="map-exit-button">&times;</div>
+      <div id="map"></div>
+    </div>
+  </div>
+  <div class="title-name">DnD Helper</div>
+    <div id="character-creator"><span>Character Creator</span></div>
+    <div id="gameshop-finder"><span>Gameshop Finder</span></div>
+    <div id="group-finder"><span>Group Finder</span></div>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAida3l8h8mIi42Ru3iBSFFwmvQqxE_Ib0&libraries=places&callback=initMap"
+    async defer></script>
+</body>
+</html>
