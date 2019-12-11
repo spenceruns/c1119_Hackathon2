@@ -198,6 +198,21 @@ button {
   cursor: pointer;
 }
 
+.print-button {
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+  background-color: rgb(65, 140, 254);
+  height: 10%;
+  width: 10%;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.print-button:hover {
+  background-color: rgb(5, 74, 250);
+}
+
 .random-character-name,
 .random-player-name {
   height: 7%;
@@ -242,12 +257,212 @@ button {
   font-size: 1.5em;
 }
 
-.main-page {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 77.2%;
-  height: 100%;
+/* Character Sheet Styling */
+#created-character {
+  width: 729px;
+  height: 964px;
   background-color: white;
+}
+
+hr {
   border: 1px solid black;
+  margin: 0;
+}
+
+.top-box {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+.character-name-info {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  border-right: 2px solid black;
+  margin-right: 5px;
+}
+
+.character-name-placeholder{
+  position: relative;
+  width: 85%;
+  font-size: 12px;
+  left: 10px;
+}
+
+.character-name {
+  position: relative;
+  font-weight: bold;
+  font-size: 25px;
+  left: 10px;
+}
+
+.other-info {
+  width: 53%;
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-flow: wrap;
+}
+
+.info {
+  position: relative;
+  top: 12px;
+  height: 30%;
+  width: 50%;
+}
+
+.area {
+  font-size: 15px;
+}
+
+.placeholder {
+  font-size: 12px;
+}
+
+.bottom-box {
+  margin-top: 2%;
+  height: 78%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+}
+.stat-container {
+  width: 30%;
+  border-right: 2px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.base-stat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 75%;
+  height: 12%;
+}
+
+.modifier {
+  font-size: 35px;
+  border: 1px solid black;
+  border-radius: 50px;
+  text-align: center;
+  width: 60%;
+  margin: 5px;
+}
+.stat {
+  font-size: 20px;
+  border-radius: 40px;
+  border: 1px solid black;
+  width: 20%;
+  text-align: center;
+}
+
+.other-stats {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ac-inti,
+.speed-hitdice,
+.current-hitpoints {
+  margin: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: wrap row;
+  width: 80%;
+  height: 10%;
+  font-size: 10px;
+}
+
+.ac,
+.inti,
+.speed,
+.hitdice,
+.current-HP,
+.total-HP {
+  border: 1px solid black;
+  border-radius: 20px;
+  width: 40%;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weapons-and-info {
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.character-info {
+  width: 100%;
+  height: 32%;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.traits,
+.ideals,
+.bonds,
+.flaws {
+  width: 100%;
+  height: 22%;
+  text-align: left;
+  border-top: 1px solid black;
+}
+
+.weapons {
+  width: 100%;
+  height: 65%;
+  border-left: 2px solid black;
+  border-top: 2px solid black;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+}
+
+.weapon {
+  width: 100%;
+  height: 30%;
+  border-top: 1px solid black;
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: space-around;
+}
+
+.weapon-name,
+.weapon-dice,
+.weapon-type {
+  position: relative;
+  top: 18px;
+  width: 33.33%;
+}
+
+.weapon-prop {
+  position: relative;
+  top: 18px;
+  width: 100%;
+}
+
+.one,
+.two {
+  border-bottom: 1px solid black;
+}
+
+.move-up {
+  top: 0px;
 }

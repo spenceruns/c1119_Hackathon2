@@ -38,6 +38,7 @@ class CharacterCreator {
     this.$body.on("click", ".create-character", this.makeCreateCharacterScreen);
     this.$body.on("click", ".generate-random-button", this.generateRandomCharacter);
     this.$body.on("click", ".generate-created-button", this.generateCreatedCharacter);
+    this.$body.on("click", ".print-button", this.print);
   }
 
   getCharacterData() {
@@ -135,5 +136,13 @@ class CharacterCreator {
     }
     if (emptyField) return false;
     this.createdCharacterScreen.generateCreatedCharacter()
+  }
+
+  print() {
+    printJS({
+      printable: 'created-character',
+      type: 'html',
+      css: 'style.css',
+    })
   }
 }
