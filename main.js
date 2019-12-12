@@ -19,7 +19,7 @@ function hideMap() {
 function initMap() {
   var shops = [{
     name: "Brookhurst Hobbies",
-    link: "http://www.brookhursthobbies.com/",
+    link: "brookhursthobbies.com",
     coord: {
       lat: 33.785830,
       lng: -117.957950
@@ -67,7 +67,7 @@ function initMap() {
     },
     {
       name: "The Game Chest",
-      link: "https://www.thegamechest.com/",
+      link: "thegamechest.com",
       coord: {
         lat: 33.649979,
         lng: -117.743721
@@ -75,7 +75,7 @@ function initMap() {
     },
     {
       name: "Comic Quest",
-      link: "https://comicquest.org/",
+      link: "comicquest.org",
       coord: {
         lat: 33.616450,
         lng: -117.708690
@@ -83,19 +83,17 @@ function initMap() {
     },
     {
       name: "Magic and Monsters",
-      link: "http://www.magicandmonsters.com/",
+      link: "magicandmonsters.com",
       coord: {
         lat: 33.616720,
         lng: -117.681430
       }
     }]
 
-  var options = {
+  var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
     center: { lat: 33.6805592, lng: -117.8710307 }
-  }
-
-  var map = new google.maps.Map(document.getElementById("map"), options)
+  });
 
   for (var index=0; index < shops.length; index++) {
     getMarker(shops[index].coord, shops[index].name, shops[index].link);
@@ -108,7 +106,7 @@ function initMap() {
     });
 
     var infowindow = new google.maps.InfoWindow({
-      content: "<h1>" + name + "</h1>" + "<div>" + link + "</div>",
+      content: `<h1>${name}</h1><div>${link}</div>`
     });
 
     marker.addListener("click", function(){

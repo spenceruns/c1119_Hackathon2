@@ -63,8 +63,8 @@ class GroupFinder {
         text: groupName,
         class: "meetup-group",
         "data-group-index": groupIndex,
-        click: this.showClickedGroupInfo,
-      })
+        click: this.showClickedGroupInfo
+      }).css("background-image", `url("./assets/group-paper-${groupIndex}.png")`);
       $groupNameSection.append($meetupGroup);
     }
   }
@@ -105,7 +105,6 @@ class GroupFinder {
       html: "<strong>Organizer Name: </strong>" + clickedGroupInfo.organizer_name,
     })
     $groupInfoSection.append($clickedGroupName, $clickedGroupDescription, $clickedGroupLinkContainer, $clickedGroupLocation, $clickedGroupOrganizerName);
-    console.log(clickedGroupInfo);
   }
 
   closeGroupFinderModal() {
