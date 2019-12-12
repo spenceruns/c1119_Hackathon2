@@ -47,6 +47,7 @@ button {
   font-size: 3em;
   color: white;
   transition: width 0.1s, height 0.1s, font-size 0.1s;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 }
 
 #character-creator:hover {
@@ -68,6 +69,7 @@ button {
   font-size: 3em;
   color: white;
   transition: width 0.1s, height 0.1s, font-size 0.1s;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 }
 
 
@@ -90,6 +92,7 @@ button {
   font-size: 3em;
   color: white;
   transition: width 0.1s, height 0.1s, font-size 0.1s;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 }
 
 #group-finder:hover {
@@ -251,8 +254,10 @@ button {
   position: absolute;
   height: 80%;
   width: 80%;
-  background-color: black;
-  border: 2px solid red;
+  background-image: url("./assets/blacksmith.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
