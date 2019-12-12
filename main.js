@@ -8,9 +8,9 @@ function initializeApp() {
   $(".map-exit-button").on("click", hideMap);
 }
 
-  function showMap() {
-    $(".map-container").removeClass("hidden");
-  }
+function showMap() {
+  $(".map-container").removeClass("hidden");
+}
 
 function hideMap() {
   $(".map-container").addClass("hidden");

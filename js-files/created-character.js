@@ -14,33 +14,33 @@ class CreatedCharacter {
   makeCreateCharacterScreen() {
     var $modalContent = $(".modal-content");
     $modalContent.empty();
-    var inputs = $("<div>").addClass("inputContainer");
+    var inputs = $("<div>").addClass("input-container");
     var characterNameInput = $("<input>").addClass("create-character-name").attr("placeholder", "Character Name");
     var playerNameInput = $("<input>").addClass("create-player-name").attr("placeholder", "Player Name");
     var createButton = $("<button>").addClass("generate-created-button").text("Generate");
     var exitButton = $("<div>").addClass("cc-exit-button").html("&times;");
-    var raceSelect = $("<select>").addClass("raceSelect").attr("name", "Race");
+    var raceSelect = $("<select>").addClass("race-select").attr("name", "Race");
     var raceInput = $("<option>").text("Race...");
     raceSelect.append(raceInput);
     for (var index = 0; index < this.races.length; index++) {
       raceInput = $("<option>").attr("value", index).text(this.races[index].name);
       raceSelect.append(raceInput);
     }
-    var classSelect = $("<select>").addClass("classSelect");
+    var classSelect = $("<select>").addClass("class-select");
     var classInput = $("<option>").text("Class...");
     classSelect.append(classInput);
     for (var index = 0; index < this.classes.length; index++) {
       classInput = $("<option>").attr("value", index).text(this.classes[index].name);
       classSelect.append(classInput);
     }
-    var backgroundSelect = $("<select>").addClass("backgroundSelect");
+    var backgroundSelect = $("<select>").addClass("background-select");
     var backgroundInput = $("<option>").text("Background...");
     backgroundSelect.append(backgroundInput);
     for (var index = 0; index < this.backgrounds.length; index++) {
       var backgroundInput = $("<option>").attr("value", index).text(this.backgrounds[index].name);
       backgroundSelect.append(backgroundInput);
     }
-    var alignmentSelect = $("<select>").addClass("alignmentSelect");
+    var alignmentSelect = $("<select>").addClass("alignment-select");
     var alignmentInput = $("<option>").text("Alignment...");
     alignmentSelect.append(alignmentInput);
     for (var index = 0; index < this.alignments.length; index++) {
@@ -55,10 +55,10 @@ class CreatedCharacter {
   generateCreatedCharacter() {
     this.selectedStats.characterName = $(".create-character-name").val();
     this.selectedStats.playerName = $(".create-player-name").val();
-    this.selectedStats.raceSelected = this.races[$(".raceSelect").val()];
-    this.selectedStats.classSelected = this.classes[$(".classSelect").val()];
-    this.selectedStats.backgroundSelected = this.backgrounds[$(".backgroundSelect").val()];
-    this.selectedStats.alignmentSelected = this.alignments[$(".alignmentSelect").val()];
+    this.selectedStats.raceSelected = this.races[$(".race-select").val()];
+    this.selectedStats.classSelected = this.classes[$(".class-select").val()];
+    this.selectedStats.backgroundSelected = this.backgrounds[$(".background-select").val()];
+    this.selectedStats.alignmentSelected = this.alignments[$(".alignment-select").val()];
     this.selectedStats.weapons = this.weapons;
     $(".character-modal").empty();
     var newCharacter = new GeneratedCharacter(this.selectedStats);

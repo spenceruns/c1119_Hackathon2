@@ -124,6 +124,7 @@ button {
   box-sizing: border-box;
 }
 #group-finder-modal-exit-button {
+  font-size: 2rem;
   position: absolute;
   top: 2%;
   right: 2%;
@@ -261,6 +262,7 @@ button {
 }
 
 .cc-exit-button {
+  font-size: 2rem;
   position: absolute;
   color: white;
   top: 4%;
@@ -306,7 +308,7 @@ button {
   background-color: rgb(1, 140, 1);
 }
 
-.inputContainer {
+.input-container {
   width: 80%;
   height: 60%;
   display: flex;
@@ -317,10 +319,10 @@ button {
 
 .create-character-name,
 .create-player-name,
-.raceSelect,
-.classSelect,
-.backgroundSelect,
-.alignmentSelect {
+.race-select,
+.class-select,
+.background-select,
+.alignment-select {
   width: 40%;
   height: 10%;
   margin: 1%;
@@ -567,6 +569,7 @@ hr {
 }
 
 .map-exit-button {
+  font-size: 2rem;
   position: relative;
   bottom: 47%;
   left: 92%;
