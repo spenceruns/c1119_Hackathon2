@@ -7,7 +7,7 @@ class GeneratedCharacter {
     this.background = selectedStats.backgroundSelected;
     this.alignment = selectedStats.alignmentSelected;
     this.weapons = selectedStats.weapons;
-    this.stats = ["Strength", "Dexterty", "Constitution", "Intelligence", "Wisdom", "Charisma"];
+    this.stats = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
     this.generateCharacterSheet = this.generateCharacterSheet.bind(this);
     this.generateCharacterSheet();
   }
@@ -194,11 +194,3 @@ class GeneratedCharacter {
     $(".character-modal").append(createdCharacterSheet);
   }
 }
-
-    //Function to bring up print screen
-
-    // printJS({
-    //   printable: 'created-character',
-    //   type: 'html',
-    //   css: 'style.css',
-    // })
