@@ -113,7 +113,7 @@ class GroupFinder {
     let $clickedGroupInfoContainerExitButton = $("<div>", {
       class: "group-finder-modal-exit-button",
       html: "&times;",
-      click: this.closeGroupFinderModal
+      click: this.closeGroupInfoModal
     })
     let $clickedGroupInfoContainer = $("<div>", {
       id: "meetup-group-info-container"
@@ -126,7 +126,7 @@ class GroupFinder {
     $("#group-finder-modal-container").remove();
   }
 
-  closeGroupFinderModal() {
+  closeGroupInfoModal() {
     $("#meetup-group-info-container").remove();
   }
 
