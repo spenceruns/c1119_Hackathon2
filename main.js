@@ -1,9 +1,8 @@
 $(document).ready(initializeApp);
 
 function initializeApp() {
-  var groupFinderPage = new GroupFinder();
-  $("#group-finder").click(groupFinderPage.render);
   var newCharacter = new CharacterCreator();
+  var groupFinderPage = new GroupFinder();
   $("#gameshop-finder").on("click", showMap);
   $(".map-exit-button").on("click", hideMap);
 }

@@ -12,29 +12,31 @@ class GroupFinder {
     this.queryMeetupAPI = this.queryMeetupAPI.bind(this);
     this.createMeetupGroupDivs = this.createMeetupGroupDivs.bind(this);
     this.showClickedGroupInfo = this.showClickedGroupInfo.bind(this);
+
+    // Add click handler to GroupFinder button
+    $("#group-finder").click(this.render);
   }
 
   createQueryURL() {
     // Grab query params
-    var queryCity = $("#meetup-city-input").val();
-    var queryState = $("#meetup-state-input").val();
-    var queryCountry = $("#meetup-country-input").val();
-    var queryRadius = $("#meetup-radius-input").val();
+    let queryCity = $("#meetup-city-input").val();
+    let queryState = $("#meetup-state-input").val();
+    let queryRadius = $("#meetup-radius-input").val();
 
     // Construct actual query
-    var queryURLBase = "https://api.meetup.com/groups?key=" + this.meetupDotComAPIKey + "&sign=true&page=9&topic=dnd";
-    var cityURLParameter = "&city=" + queryCity;
-    var stateURLParameter = "&state=" + queryState;
-    var countryURLParameter = "&country=" + queryCountry;
-    var radiusURLParameter = "&radius=" + queryRadius;
-    var queryURL = queryURLBase + cityURLParameter + stateURLParameter + countryURLParameter + radiusURLParameter;
+    let queryURLBase = "https://api.meetup.com/groups?key=" + this.meetupDotComAPIKey + "&sign=true&page=9&topic=dnd";
+    let cityURLParameter = "&city=" + queryCity;
+    let stateURLParameter = "&state=" + queryState;
+    let countryURLParameter = "&country=US";
+    let radiusURLParameter = "&radius=" + queryRadius;
+    let queryURL = queryURLBase + cityURLParameter + stateURLParameter + countryURLParameter + radiusURLParameter;
 
     return queryURL;
   }
 
   queryMeetupAPI() {
     // Construct Query URL
-    var queryURL = this.createQueryURL();
+    let queryURL = this.createQueryURL();
 
     // Make AJAX request for local groups
     $.ajax({
@@ -46,137 +48,132 @@ class GroupFinder {
         console.log("An error was returned from the server:", error);
       }
     });
-    var loadingModal = $("<div>").addClass("loading-modal").text("Loading...");
-    $("#group-name-section").append(loadingModal);
+
+    let loadingModal = $("<div>").addClass("loading-modal").text("Loading...");
+    $("#group-finder-modal-body").empty().append(loadingModal);
   }
 
   createMeetupGroupDivs(response) {
-    var $groupNameSection = $("#group-name-section");
-    $groupNameSection.empty();
+    let $modalBody = $("#group-finder-modal-body");
+    $modalBody.empty();
+
+    let $meetupGroupContainer = $("<div>", {
+      id: "meetup-group-container"
+    })
+    $modalBody.append($meetupGroupContainer);
 
     // We want to create X number of shield divs on our bottom section
     this.meetupGroups = response.results;
 
-    for (var groupIndex = 0; groupIndex < this.meetupGroups.length; groupIndex++) {
-      var groupName = this.meetupGroups[groupIndex].name;
-      var $meetupGroup = $("<div>", {
+    for (let groupIndex = 0; groupIndex < this.meetupGroups.length; groupIndex++) {
+      let groupName = this.meetupGroups[groupIndex].name;
+      let $meetupGroup = $("<div>", {
         text: groupName,
         class: "meetup-group",
         "data-group-index": groupIndex,
         click: this.showClickedGroupInfo
       }).css("background-image", `url("./assets/group-paper-${groupIndex}.png")`);
-      $groupNameSection.append($meetupGroup);
+      $meetupGroupContainer.append($meetupGroup);
     }
   }
 
   showClickedGroupInfo(event) {
-    var $groupInfoSection = $("#group-info-section");
-    $groupInfoSection.empty();
-    var $clickedGroupDiv = $(event.currentTarget);
-    $clickedGroupDiv.addClass("meetup-group-selected");
-    var clickedGroupDivIndex = $clickedGroupDiv.attr("data-group-index");
-    var clickedGroupInfo = this.meetupGroups[clickedGroupDivIndex];
-    var $clickedGroupName = $("<h3>", {
-      id: "group-name",
+    // Figure out which group was clicked, then display a modal inside of the #meetup-group-container
+    let $clickedGroupDiv = $(event.currentTarget);
+    let clickedGroupDivIndex = $clickedGroupDiv.attr("data-group-index");
+    let clickedGroupInfo = this.meetupGroups[clickedGroupDivIndex];
+    let $clickedGroupName = $("<h3>", {
+      id: "meetup-group-name",
       text: clickedGroupInfo.name
     });
-    var $clickedGroupDescription = $("<div>", {
-      id: "group-description",
+    let $clickedGroupDescription = $("<div>", {
+      id: "meetup-group-description",
       html: "<strong>Description: </strong>" + clickedGroupInfo.description
     });
-    var $clickedGroupLinkContainer = $("<div>", {
-      id: "group-link-container",
+    let $clickedGroupLinkContainer = $("<div>", {
+      id: "meetup-group-link-container",
       html: "<strong>Link: </strong>",
       style: "display: inline"
     });
-    var $clickedGroupLink = $("<a>", {
-      id: "group-link",
+    let $clickedGroupLink = $("<a>", {
+      id: "meetup-group-link",
       target: "blank",
       href: clickedGroupInfo.link,
       text: clickedGroupInfo.link
     });
     $clickedGroupLinkContainer.append($clickedGroupLink);
-    var $clickedGroupLocation = $("<div>", {
-      id: "group-location",
+    let $clickedGroupLocation = $("<div>", {
+      id: "meetup-group-location",
       html: "<strong>Location: </strong>" + clickedGroupInfo.city + ", " + clickedGroupInfo.state,
     })
-    var $clickedGroupOrganizerName = $("<div>", {
-      id: "group-organizer-name",
+    let $clickedGroupOrganizerName = $("<div>", {
+      id: "meetup-group-organizer-name",
       html: "<strong>Organizer Name: </strong>" + clickedGroupInfo.organizer_name,
     })
-    $groupInfoSection.append($clickedGroupName, $clickedGroupDescription, $clickedGroupLinkContainer, $clickedGroupLocation, $clickedGroupOrganizerName);
+    let $clickedGroupInfoContainerExitButton = $("<div>", {
+      class: "group-finder-modal-exit-button",
+      html: "&times;",
+      click: this.closeGroupFinderModal
+    })
+    let $clickedGroupInfoContainer = $("<div>", {
+      id: "meetup-group-info-container"
+    })
+    $clickedGroupInfoContainer.append($clickedGroupInfoContainerExitButton, $clickedGroupName, $clickedGroupDescription, $clickedGroupLinkContainer, $clickedGroupLocation, $clickedGroupOrganizerName);
+    $("#meetup-group-container").append($clickedGroupInfoContainer);
   }
 
   closeGroupFinderModal() {
     $("#group-finder-modal-container").remove();
   }
 
+  closeGroupFinderModal() {
+    $("#meetup-group-info-container").remove();
+  }
+
   render() {
+    let $modalContainer = $("<div>", {
+      id: "group-finder-modal-container"
+    })
+    let $modal = $("<div>", {
+      id: "group-finder-modal"
+    })
+    $modalContainer.append($modal);
+    this.$body.append($modalContainer);
+
+    // Create exit button
+    let $modalExitButton = $("<div>", {
+      class: "group-finder-modal-exit-button",
+      html: "&times;",
+      click: this.closeGroupFinderModal
+    })
+    $modal.append($modalExitButton);
+
     // Create inputs
-    var $meetupCityInput = $("<input>", {
+    let $meetupCityInput = $("<input>", {
       id: "meetup-city-input",
       placeholder: "City Name",
       value: "Irvine"
     });
-    var $meetupStateInput = $("<input>", {
+    let $meetupStateInput = $("<input>", {
       id: "meetup-state-input",
       placeholder: "State Name",
       value: "CA"
     });
-    var $meetupCountryInput = $("<input>", {
-      id: "meetup-country-input",
-      placeholder: "Country Name",
-      value: "US"
-    });
-    var $meetupRadiusInput = $("<input>", {
+    let $meetupRadiusInput = $("<input>", {
       id: "meetup-radius-input",
-      placeholder: "Radius",
+      placeholder: "Radius (in miles)",
       value: "25"
     });
-    var $meetupSearchButton = $("<button>", {
+    let $meetupSearchButton = $("<button>", {
       id: "meetup-search-submit-button",
       text: "Search",
       click: this.queryMeetupAPI
     })
-
-    // Create modal header and append inputs / button
-    var $groupFinderModalHeader = $("<div>", {
-      id: "group-finder-modal-header"
-    })
-    $groupFinderModalHeader.append($meetupCityInput, $meetupStateInput, $meetupCountryInput, $meetupRadiusInput, $meetupSearchButton);
-
-    // Create modal exit button
-    var $groupFinderModalExitButton = $("<div>", {
-      id: "group-finder-modal-exit-button",
-      html: "&times;",
-      click: this.closeGroupFinderModal,
-    })
-
-    // Create modal body
-    var $groupFinderModalBody = $("<div>", {
+    let $modalBody = $("<div>", {
       id: "group-finder-modal-body"
     })
-    var $groupNameSection = $("<div>", {
-      id: "group-name-section"
-    })
-    var $groupInfoSection = $("<div>", {
-      id: "group-info-section"
-    })
-    $groupFinderModalBody.append($groupNameSection, $groupInfoSection);
-
-    // Create a modal and append modal header to modal
-    var $groupFinderModal = $("<div>", {
-      id: "group-finder-modal"
-    });
-    $groupFinderModal.append($groupFinderModalExitButton, $groupFinderModalHeader, $groupFinderModalBody);
-
-    // Create modal container and append modal to modal container
-    var $groupFinderModalContainer = $("<div>", {
-      id: "group-finder-modal-container"
-    });
-    $groupFinderModalContainer.append($groupFinderModal);
-
-    // Append all this to the body
-    this.$body.append($groupFinderModalContainer);
+    $modalBody.append($meetupCityInput, $meetupStateInput, $meetupRadiusInput, $meetupSearchButton);
+    $modal.append($modalBody);
   }
+
 }

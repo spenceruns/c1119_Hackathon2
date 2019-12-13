@@ -112,60 +112,50 @@ button {
   align-items: center;
 }
 #group-finder-modal {
-  font-family: Arial;
   position: relative;
-  width: 80%;
+  width: 65%;
   height: 80%;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
+  background-image: url("./assets/notice-board-bg.jpg");
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-#group-finder-modal > * {
-  box-sizing: border-box;
-}
-#group-finder-modal-exit-button {
+.group-finder-modal-exit-button {
   font-size: 2rem;
   position: absolute;
-  top: 2%;
-  right: 2%;
+  top: 4%;
+  right: 4%;
   color: white;
   cursor: pointer;
-}
-#group-finder-modal-header {
-  background-color: rgb(35,18,11);
-  height: 15%;
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-#group-finder-modal-header > * {
-  font-size: 1rem;
-}
-#group-finder-modal-header > button {
-  width: 15%;
-  height: 40%;
 }
 #group-finder-modal-body {
   width: 100%;
   height: 85%;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
 }
-#group-name-section {
-  width: 60%;
+#meetup-city-input, #meetup-state-input, #meetup-radius-input, #meetup-search-submit-button {
+  font-size: 2.5rem;
+  width: 50%;
+  height: 15%;
+}
+#meetup-group-container {
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  background-image: url("./assets/notice-board-bg.jpg");
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
-
 .loading-modal {
   position: fixed;
   width: 30%;
@@ -205,24 +195,20 @@ button {
   border-radius: 5px;
   box-shadow: 0 0 8px 8px rgba(250,250,210,0.8);
 }
-
-#group-info-section {
+#meetup-group-info-container {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  padding: 2rem;
+  background-color: rgb(0, 0, 0, 0.9);
+  color: white;
+  border-radius: 1rem;
   box-sizing: border-box;
-  padding: 1%;
-  width: 35%;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  overflow: auto;
-  background-color: black;
-  color: white;
+  justify-content: space-around;
 }
-#group-info-section > * {
-  margin-top: 3%;
-  width: 90%;
-}
-#group-name {
+#meetup-group-name {
   margin: 0;
   height: 10%;
   display: flex;
