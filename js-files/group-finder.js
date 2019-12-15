@@ -118,7 +118,7 @@ class GroupFinder {
     let $clickedGroupInfoContainer = $("<div>", {
       id: "meetup-group-info-container"
     })
-    $clickedGroupInfoContainer.append($clickedGroupInfoContainerExitButton, $clickedGroupName, $clickedGroupDescription, $clickedGroupLinkContainer, $clickedGroupLocation, $clickedGroupOrganizerName);
+    $clickedGroupInfoContainer.append($clickedGroupName, $clickedGroupDescription, $clickedGroupLinkContainer, $clickedGroupLocation, $clickedGroupOrganizerName, $clickedGroupInfoContainerExitButton);
     $("#meetup-group-container").append($clickedGroupInfoContainer);
   }
 
@@ -146,7 +146,7 @@ class GroupFinder {
       html: "&times;",
       click: this.closeGroupFinderModal
     })
-    $modal.append($modalExitButton);
+    $modalContainer.append($modalExitButton);
 
     // Create inputs
     let $meetupCityInput = $("<input>", {

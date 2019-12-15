@@ -10,14 +10,18 @@ class RandomCharacter {
   }
 
   makeRandomCharacterScreen() {
-    var $modalContent = $(".modal-content");
+    var $modalContent = $(".blacksmith");
     $modalContent.empty();
+    let inputContainer = $("<div>").addClass("input-container");
     var characterNameInput = $("<input>").addClass("random-character-name").attr("placeholder", "Character Name");
     var playerNameInput = $("<input>").addClass("random-player-name").attr("placeholder", "Player Name");
-    var randomButton = $("<button>").addClass("generate-random-button").text("Generate");
-    var exitButton = $("<div>").addClass("cc-exit-button").html("&times;");
+    var generateButton = $("<div>").addClass("generate-button");
+    let hammer = $("<div>").addClass("hammer");
+    let generateText = $("<div>").addClass("generate-random-text").text("Generate");
+    generateButton.append(hammer, generateText);
 
-    $modalContent.append(characterNameInput, playerNameInput, randomButton, exitButton);
+    inputContainer.append(characterNameInput, playerNameInput, generateButton);
+    $modalContent.append(inputContainer);
   }
 
   generateRandomCharacter() {

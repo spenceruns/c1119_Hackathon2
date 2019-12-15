@@ -12,13 +12,15 @@ class CreatedCharacter {
   }
 
   makeCreateCharacterScreen() {
-    var $modalContent = $(".modal-content");
+    var $modalContent = $(".blacksmith");
     $modalContent.empty();
-    var inputs = $("<div>").addClass("input-container");
+    let inputContainer = $("<div>").addClass("input-container");
     var characterNameInput = $("<input>").addClass("create-character-name").attr("placeholder", "Character Name");
     var playerNameInput = $("<input>").addClass("create-player-name").attr("placeholder", "Player Name");
-    var createButton = $("<button>").addClass("generate-created-button").text("Generate");
-    var exitButton = $("<div>").addClass("cc-exit-button").html("&times;");
+    let generateButton = $("<div>").addClass("generate-button");
+    let hammer = $("<div>").addClass("hammer");
+    let generateText = $("<div>").addClass("generate-created-text").text("Generate");
+    generateButton.append(hammer, generateText);
     var raceSelect = $("<select>").addClass("race-select").attr("name", "Race");
     var raceInput = $("<option>").text("Race...");
     raceSelect.append(raceInput);
@@ -48,8 +50,8 @@ class CreatedCharacter {
       alignmentSelect.append(alignmentInput);
     }
 
-    inputs.append(characterNameInput, playerNameInput, raceSelect, classSelect, backgroundSelect, alignmentSelect);
-    $modalContent.append(inputs, createButton, exitButton);
+    inputContainer.append(characterNameInput, playerNameInput, raceSelect, classSelect, backgroundSelect, alignmentSelect, generateButton);
+    $modalContent.append(inputContainer);
   }
 
   generateCreatedCharacter() {

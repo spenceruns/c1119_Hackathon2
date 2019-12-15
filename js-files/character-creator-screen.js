@@ -34,10 +34,12 @@ class CharacterCreator {
   addClickHandlers() {
     this.$characterCreator.on("click", this.render);
     this.$body.on("click", ".cc-exit-button", this.exitModal);
-    this.$body.on("click", ".random-character", this.makeRandomCharacterScreen);
-    this.$body.on("click", ".create-character", this.makeCreateCharacterScreen);
-    this.$body.on("click", ".generate-random-button", this.generateRandomCharacter);
-    this.$body.on("click", ".generate-created-button", this.generateCreatedCharacter);
+    this.$body.on("click", ".random-character-button", this.makeRandomCharacterScreen);
+    this.$body.on("click", ".create-character-button", this.makeCreateCharacterScreen);
+    this.$body.on("click", ".generate-random-text", this.generateRandomCharacter);
+    this.$body.on("click", ".generate-created-text", this.generateCreatedCharacter);
+    this.$body.on("mouseover", ".generate-button", this.rotateHammer);
+    this.$body.on("mouseout", ".generate-button", this.unrotateHammer);
     this.$body.on("click", ".print-button", this.print);
   }
 
@@ -88,13 +90,17 @@ class CharacterCreator {
       alignments: this.alignments
     };
     var modalPage = $("<div>").addClass("character-modal");
-    var modalContent = $("<div>").addClass("modal-content");
-    var randomButton = $("<button>").addClass("random-character").text("Random Character");
-    var createButton = $("<button>").addClass("create-character").text("Create Character");
+    var modalContent = $("<div>").addClass("blacksmith");
+    var randomButton = $("<div>").addClass("random-character-button");
+    var randomCharacterText = $("<div>").addClass("random-character-text").text("Random Character");
+    randomButton.append(randomCharacterText);
+    var createButton = $("<div>").addClass("create-character-button");
+    var CreateCharacterText = $("<div>").addClass("create-character-text").text("Create Character");
+    createButton.append(CreateCharacterText);
     var exitButton = $("<div>").addClass("cc-exit-button").html("&times;");
 
-    modalContent.append(randomButton, createButton, exitButton);
-    modalPage.append(modalContent);
+    modalContent.append(randomButton, createButton);
+    modalPage.append(modalContent, exitButton);
     this.$body.append(modalPage);
   }
 
@@ -136,6 +142,14 @@ class CharacterCreator {
     }
     if (emptyField) return false;
     this.createdCharacterScreen.generateCreatedCharacter()
+  }
+
+  rotateHammer() {
+    $(".hammer").addClass("rotated");
+  }
+
+  unrotateHammer() {
+    $(".hammer").removeClass("rotated");
   }
 
   print() {

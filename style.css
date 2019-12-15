@@ -8,6 +8,9 @@ body {
   height: 100vh;
   width: 100vw;
   background-image: url("./assets/background-map.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   font-family: 'MedievalSharp', cursive;
 }
 
@@ -104,7 +107,7 @@ button {
 /********** GroupFinder styling **********/
 #group-finder-modal-container {
   font-family: 'MedievalSharp', cursive;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.7);
   width: 100%;
   height: 100%;
   position: fixed;
@@ -116,7 +119,7 @@ button {
 }
 #group-finder-modal {
   position: relative;
-  width: 65%;
+  width: 68%;
   height: 80%;
   background-repeat: no-repeat;
   background-size: contain;
@@ -127,13 +130,18 @@ button {
   justify-content: center;
 }
 .group-finder-modal-exit-button {
-  font-size: 2rem;
+  font-size: 4rem;
   position: absolute;
-  top: 4%;
+  top: 0;
   right: 4%;
   color: white;
   cursor: pointer;
 }
+
+.group-finder-modal-exit-button:hover {
+  color: rgb(171, 171, 171);
+}
+
 #group-finder-modal-body {
   width: 100%;
   height: 85%;
@@ -143,10 +151,14 @@ button {
   justify-content: center;
   justify-content: space-around;
 }
-#meetup-city-input, #meetup-state-input, #meetup-radius-input, #meetup-search-submit-button {
-  font-size: 2.5rem;
+#meetup-city-input,
+#meetup-state-input,
+#meetup-radius-input,
+#meetup-search-submit-button {
+  font-size: 2rem;
   width: 50%;
-  height: 15%;
+  height: 10%;
+  text-align: center;
 }
 #meetup-group-container {
   width: 100%;
@@ -183,6 +195,7 @@ button {
   width: 23%;
   height: 21%;
   position: relative;
+  font-size: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -210,8 +223,10 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  box-shadow: 0 0 8px 8px rgba(0,0,0,0.8);
 }
 #meetup-group-name {
+  font-size: 2rem;
   margin: 0;
   height: 10%;
   display: flex;
@@ -224,6 +239,7 @@ button {
 /* Character Creation */
 
 .character-modal {
+  font-family: 'MedievalSharp', cursive;
   position: fixed;
   display: flex;
   justify-content: center;
@@ -232,12 +248,13 @@ button {
   left: 0;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-.modal-content {
+.blacksmith {
   font-family: 'MedievalSharp', cursive;
-  position: absolute;
+  position: relative;
+  right: 30%;
   height: 80%;
   width: 80%;
   background-image: url("./assets/blacksmith.png");
@@ -250,22 +267,54 @@ button {
   flex-direction: column;
 }
 
-.modal-content button {
-  margin: 5%;
+.random-character-button,
+.create-character-button {
+  position: relative;
+  left: 50%;
+  background-image: url("./assets/sword.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 70%;
+  height: 25%;
+  cursor: pointer;
+  transition: width 0.1s, height 0.1s, font-size 0.1s;
 }
 
-.random-character:hover,
-.create-character:hover {
-  background-color: grey;
+.create-character-button {
+  transform: rotate(180deg);
 }
+
+.random-character-button:hover,
+.create-character-button:hover {
+  width: 80%;
+  height: 30%;
+  font-size: 5rem;
+}
+
+.random-character-text,
+.create-character-text {
+  font-size: 4rem;
+  color: white;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+}
+
+.create-character-text {
+  transform: rotate(180deg);
+}
+
 
 .cc-exit-button {
-  font-size: 2rem;
+  font-size: 4rem;
   position: absolute;
   color: white;
-  top: 4%;
-  right: 5%;
+  top: 0;
+  right: 4%;
   cursor: pointer;
+}
+
+.cc-exit-button:hover {
+  color: rgb(171, 171, 171);
 }
 
 .print-button {
@@ -285,33 +334,60 @@ button {
 
 .random-character-name,
 .random-player-name {
-  height: 7%;
-  width: 50%;
-  margin: 5vh;
-  font-size: 2em;
+  height: 9%;
+  width: 86%;
+  font-size: 2rem;
+  text-align: center;
 }
 
-.generate-created-button,
-.generate-random-button {
-  background-color: rgb(2, 211, 2);
-  height: 12%;
-  width: 50%;
-  font-size: 2em;
-  margin: 5vh;
-  cursor: pointer;
-}
-
-.generate-created-button:hover,
-.generate-random-button:hover {
-  background-color: rgb(1, 140, 1);
-}
-
-.input-container {
-  width: 80%;
-  height: 60%;
+.generate-button {
+  height: 10%;
+  width: 28%;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: white;
+  margin-top: 8%;
+}
+
+.hammer {
+  background-image: url("./assets/generate-hammer.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 30%;
+  width: 16%;
+  bottom: 10%;
+  left: 23%;
+  position: absolute;
+  transition: transform 0.15s;
+}
+
+.rotated {
+  transform: rotate(69deg);
+}
+
+.generate-random-text,
+.generate-created-text {
+  font-size: 4rem;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.generate-button:hover {
+  color: rgb(171, 171, 171);
+}
+
+.input-container {
+  position: relative;
+  left: 40%;
+  padding: 5%;
+  height: 87%;
+  width: 55%;
+  display: flex;
+  justify-content: space-around;
+  align-content: space-around;
   flex-wrap: wrap;
 }
 
@@ -323,7 +399,6 @@ button {
 .alignment-select {
   width: 40%;
   height: 10%;
-  margin: 1%;
   font-size: 1.5em;
 }
 
