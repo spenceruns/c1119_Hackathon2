@@ -54,7 +54,7 @@ class GroupFinder {
   }
 
   createMeetupGroupDivs(response) {
-    let $modalBody = $("#group-finder-modal-body");
+    let $modalBody = $("#group-finder-modal");
     $modalBody.empty();
 
     let $meetupGroupContainer = $("<div>", {
@@ -123,7 +123,7 @@ class GroupFinder {
   }
 
   closeGroupFinderModal() {
-    $("#group-finder-modal-container").remove();
+    $(".group-finder").remove();
   }
 
   closeGroupInfoModal() {
@@ -132,7 +132,7 @@ class GroupFinder {
 
   render() {
     let $modalContainer = $("<div>", {
-      id: "group-finder-modal-container"
+      class: "group-finder modal"
     })
     let $modal = $("<div>", {
       id: "group-finder-modal"
@@ -142,7 +142,7 @@ class GroupFinder {
 
     // Create exit button
     let $modalExitButton = $("<div>", {
-      class: "group-finder-modal-exit-button",
+      class: "exit-button",
       html: "&times;",
       click: this.closeGroupFinderModal
     })
@@ -150,27 +150,27 @@ class GroupFinder {
 
     // Create inputs
     let $meetupCityInput = $("<input>", {
-      id: "meetup-city-input",
+      class: "meetup-city input",
       placeholder: "City Name",
       value: "Irvine"
     });
     let $meetupStateInput = $("<input>", {
-      id: "meetup-state-input",
+      class: "meetup-state input",
       placeholder: "State Name",
       value: "CA"
     });
     let $meetupRadiusInput = $("<input>", {
-      id: "meetup-radius-input",
+      class: "meetup-radius input",
       placeholder: "Radius (in miles)",
       value: "25"
     });
-    let $meetupSearchButton = $("<button>", {
-      id: "meetup-search-submit-button",
+    let $meetupSearchButton = $("<div>", {
+      class: "meetup-search button-style",
       text: "Search",
       click: this.queryMeetupAPI
     })
     let $modalBody = $("<div>", {
-      id: "group-finder-modal-body"
+      class: "input-container"
     })
     $modalBody.append($meetupCityInput, $meetupStateInput, $meetupRadiusInput, $meetupSearchButton);
     $modal.append($modalBody);

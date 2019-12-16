@@ -33,7 +33,7 @@ class CharacterCreator {
 
   addClickHandlers() {
     this.$characterCreator.on("click", this.render);
-    this.$body.on("click", ".cc-exit-button", this.exitModal);
+    this.$body.on("click", ".exit-button", this.exitModal);
     this.$body.on("click", ".random-character-button", this.makeRandomCharacterScreen);
     this.$body.on("click", ".create-character-button", this.makeCreateCharacterScreen);
     this.$body.on("click", ".generate-random-text", this.generateRandomCharacter);
@@ -89,15 +89,15 @@ class CharacterCreator {
       weapons: this.weapons,
       alignments: this.alignments
     };
-    var modalPage = $("<div>").addClass("character-modal");
+    var modalPage = $("<div>").addClass("character-forge modal");
     var modalContent = $("<div>").addClass("blacksmith");
-    var randomButton = $("<div>").addClass("random-character-button");
+    var randomButton = $("<div>").addClass("random-character-button button-style");
     var randomCharacterText = $("<div>").addClass("random-character-text").text("Random Character");
     randomButton.append(randomCharacterText);
-    var createButton = $("<div>").addClass("create-character-button");
+    var createButton = $("<div>").addClass("create-character-button button-style");
     var CreateCharacterText = $("<div>").addClass("create-character-text").text("Create Character");
     createButton.append(CreateCharacterText);
-    var exitButton = $("<div>").addClass("cc-exit-button").html("&times;");
+    var exitButton = $("<div>").addClass("exit-button").html("&times;");
 
     modalContent.append(randomButton, createButton);
     modalPage.append(modalContent, exitButton);
@@ -113,7 +113,13 @@ class CharacterCreator {
   }
 
   exitModal() {
-    $(".character-modal").remove();
+    $(".character-forge").remove();
+    $(".charsheet").addClass("hidden");
+    $(".saves input").prop("checked", false);
+    $(".skills input").prop("checked", false);
+    $("input[name=atkname3").val("");
+    $("input[name=atkbonus3").val("");
+    $("input[name=atkdamage3").val("");
   }
 
   generateRandomCharacter() {
@@ -154,9 +160,9 @@ class CharacterCreator {
 
   print() {
     printJS({
-      printable: 'created-character',
+      printable: 'character-sheet',
       type: 'html',
-      css: 'style.css',
+      css: 'style-character-sheet.css',
     })
   }
 }

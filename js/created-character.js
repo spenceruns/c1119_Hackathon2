@@ -15,9 +15,9 @@ class CreatedCharacter {
     var $modalContent = $(".blacksmith");
     $modalContent.empty();
     let inputContainer = $("<div>").addClass("input-container");
-    var characterNameInput = $("<input>").addClass("create-character-name").attr("placeholder", "Character Name");
-    var playerNameInput = $("<input>").addClass("create-player-name").attr("placeholder", "Player Name");
-    let generateButton = $("<div>").addClass("generate-button");
+    var characterNameInput = $("<input>").addClass("create-character-name input").attr("placeholder", "Character Name");
+    var playerNameInput = $("<input>").addClass("create-player-name input").attr("placeholder", "Player Name");
+    let generateButton = $("<div>").addClass("generate-button button-style");
     let hammer = $("<div>").addClass("hammer");
     let generateText = $("<div>").addClass("generate-created-text").text("Generate");
     generateButton.append(hammer, generateText);
@@ -62,10 +62,6 @@ class CreatedCharacter {
     this.selectedStats.backgroundSelected = this.backgrounds[$(".background-select").val()];
     this.selectedStats.alignmentSelected = this.alignments[$(".alignment-select").val()];
     this.selectedStats.weapons = this.weapons;
-    $(".character-modal").empty();
     var newCharacter = new GeneratedCharacter(this.selectedStats);
-    var exitButton = $("<div>").addClass("cc-exit-button").html("&times;");
-    var printButton = $("<button>").addClass("print-button").text("Print Character Sheet");
-    $(".character-modal").append(exitButton, printButton);
   }
 }

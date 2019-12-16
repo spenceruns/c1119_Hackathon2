@@ -4,7 +4,7 @@ function initializeApp() {
   var newCharacter = new CharacterCreator();
   var groupFinderPage = new GroupFinder();
   $("#gameshop-finder").on("click", showMap);
-  $(".map-exit-button").on("click", hideMap);
+  $(".exit-button").on("click", hideMap);
 }
 
 function showMap() {
