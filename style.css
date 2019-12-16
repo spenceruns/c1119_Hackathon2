@@ -4,37 +4,136 @@
 
 body {
   margin: 0;
-  padding: 0;
   height: 100vh;
   width: 100vw;
   background-image: url("./assets/background-map.jpeg");
-  font-family: 'MedievalSharp', cursive;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-.title-name {
+.charsheet {
+  position: fixed;
+  background-color: white;
+  top: 0%;
+  z-index: 1;
+}
+
+.title {
+  font-size: 4rem;
+  position: absolute;
+  top: 2%;
+  color: white;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+}
+
+.exit-button {
+  background-image: url("./assets/exit-button.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 2%;
+  right: 4%;
+  height: 7%;
+  width: 4%;
+  transform: rotate(45deg);
+  filter: invert(1);
+  cursor: pointer;
+  transition: transform 0.1s, filter 0.1s;
+}
+
+.exit-button:hover {
+  transform: rotate(0deg);
+  filter: invert(0.6);
+}
+
+.back-button {
+  background-image: url("./assets/back-button.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 1%;
+  left: 26%;
+  height: 7%;
+  width: 6%;
+  filter: invert(1);
+  cursor: pointer;
+  transition: height 0.1s, width 0.1s, filter 0.1s;
+}
+
+.back-button:hover {
+  height: 8%;
+  width: 7%;
+  filter: invert(0.6);
+}
+
+.button-style{
+  height: 10%;
+  width: 28%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 4rem;
+  color: white;
+  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
+  cursor: pointer;
+  transition: font-size 0.1s;
+}
+
+.button-style:hover {
+  color: rgb(171, 171, 171);
+  font-size: 4.5rem;
+}
+
+.modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.input {
+  height: 9%;
+  width: 86%;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.input-container {
+  position: relative;
+  padding: 5%;
+  height: 87%;
+  width: 55%;
+  display: flex;
+  justify-content: space-around;
+  align-content: space-around;
+  flex-wrap: wrap;
+}
+
+/********** Hub styling **********/
+
+.banner {
   width: 44%;
   height: 17%;
   background-image: url("./assets/dd-logo.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
   left: -2%;
 }
 
-button {
-  width: 50%;
-  height: 20%;
-  cursor: pointer;
-  font-size: 3em;
-  border: 2px solid white;
-  outline: none;
-}
-
-#character-creator {
+#character-creator,
+#gameshop-finder,
+#group-finder {
   position: absolute;
   top: 17%;
   right: 14%;
@@ -50,28 +149,19 @@ button {
   text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 }
 
-#character-creator:hover {
+#character-creator:hover,
+#group-finder:hover:hover {
   height: 30vh;
   width: 30vh;
   font-size: 4em;
 }
 
 #gameshop-finder {
-  position: absolute;
-  bottom: 17%;
-  right: 14%;
+  top: 61%;
   height: 20vh;
   width: 25vh;
   background-image: url("./assets/button_house.png");
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  font-size: 3em;
-  color: white;
-  transition: width 0.1s, height 0.1s, font-size 0.1s;
-  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
 }
-
 
 #gameshop-finder:hover {
   height: 32vh;
@@ -80,60 +170,26 @@ button {
 }
 
 #group-finder {
-  position: absolute;
   top: 43%;
-  left: 24%;
-  height: 20vh;
-  width: 20vh;
+  left: 20%;
   background-image: url("./assets/button_tavern.png");
-  background-size: cover;
-  background-position: center;
-  cursor: pointer;
-  font-size: 3em;
-  color: white;
-  transition: width 0.1s, height 0.1s, font-size 0.1s;
-  text-shadow: -3px 0 black, 0 3px black, 3px 0 black, 0 -3px black;
-}
-
-#group-finder:hover {
-  height: 30vh;
-  width: 30vh;
-  font-size: 4em;
 }
 
 /********** GroupFinder styling **********/
-#group-finder-modal-container {
-  font-family: 'MedievalSharp', cursive;
-  background-color: rgba(0,0,0,0.5);
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 #group-finder-modal {
   position: relative;
-  width: 65%;
+  width: 68%;
   height: 80%;
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
-  background-image: url("./assets/notice-board-bg.jpg");
+  background-position: left;
+  background-image: url("./assets/group-finder.png");
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.group-finder-modal-exit-button {
-  font-size: 2rem;
-  position: absolute;
-  top: 4%;
-  right: 4%;
-  color: white;
-  cursor: pointer;
-}
+
 #group-finder-modal-body {
   width: 100%;
   height: 85%;
@@ -143,32 +199,17 @@ button {
   justify-content: center;
   justify-content: space-around;
 }
-#meetup-city-input, #meetup-state-input, #meetup-radius-input, #meetup-search-submit-button {
-  font-size: 2.5rem;
-  width: 50%;
-  height: 15%;
-}
-#meetup-group-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-}
+
 .loading-modal {
   position: fixed;
-  width: 30%;
-  height: 20%;
-  background-color: rgba(0, 0, 0, 0.5);
+  width: 40%;
+  height: 30%;
+  background-color: rgba(0, 0, 0, 0.7);
   background-image: url(./assets/sword-loading.gif);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
-  font-size: 2em;
+  font-size: 3rem;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -177,12 +218,28 @@ button {
   box-shadow: 0 0 10px 10px rgb(0, 0, 0, 0.5);
 }
 
+#meetup-group-container {
+  padding: 6%;
+  width: 76%;
+  height: 58%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background-image: url("./assets/notice-board-bg.jpg");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
 .meetup-group {
   cursor: pointer;
-  padding: 4%;
-  width: 23%;
-  height: 21%;
+  padding: 1%;
+  margin: 0 2%;
+  width: 20%;
+  height: 33%;
   position: relative;
+  font-size: 1.5rem;
 
   display: flex;
   flex-direction: column;
@@ -193,11 +250,13 @@ button {
   background-size: contain;
   background-repeat: no-repeat;
 }
+
 .meetup-group:hover {
   background-color: rgba(250,250,210,0.8);
   border-radius: 5px;
   box-shadow: 0 0 8px 8px rgba(250,250,210,0.8);
 }
+
 #meetup-group-info-container {
   position: absolute;
   width: 80%;
@@ -210,8 +269,12 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  box-shadow: 0 0 8px 8px rgba(0,0,0,0.8);
+  font-size: 1.5rem;
 }
+
 #meetup-group-name {
+  font-size: 2rem;
   margin: 0;
   height: 10%;
   display: flex;
@@ -219,100 +282,78 @@ button {
   align-items: center;
 }
 
-/******************************/
+/********** CharacterForge styling **********/
 
-/* Character Creation */
-
-.character-modal {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-  font-family: 'MedievalSharp', cursive;
-  position: absolute;
+.blacksmith {
+  position: relative;
   height: 80%;
   width: 80%;
   background-image: url("./assets/blacksmith.png");
-  background-position: center;
+  background-position: left;
   background-size: contain;
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: -2;
 }
 
-.modal-content button {
-  margin: 5%;
-}
-
-.random-character:hover,
-.create-character:hover {
-  background-color: grey;
-}
-
-.cc-exit-button {
-  font-size: 2rem;
-  position: absolute;
-  color: white;
-  top: 4%;
-  right: 5%;
+.random-character-button,
+.create-character-button {
+  position: relative;
+  background-image: url("./assets/sword.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 70%;
+  height: 25%;
   cursor: pointer;
+  transition: width 0.1s, height 0.1s, font-size 0.1s;
+  left: 10%;
+}
+
+.create-character-button {
+  transform: rotate(180deg);
+}
+
+.random-character-button:hover,
+.create-character-button:hover {
+  width: 80%;
+  height: 30%;
+  font-size: 5rem;
+}
+
+
+.create-character-text {
+  transform: rotate(180deg);
 }
 
 .print-button {
   position: absolute;
-  bottom: 100px;
-  right: 100px;
-  background-color: rgb(65, 140, 254);
+  bottom: 10%;
+  right: 10%;
   height: 10%;
   width: 10%;
   cursor: pointer;
-  font-size: 15px;
 }
 
-.print-button:hover {
-  background-color: rgb(5, 74, 250);
+.hammer {
+  background-image: url("./assets/generate-hammer.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 30%;
+  width: 16%;
+  bottom: 8%;
+  left: 23%;
+  position: absolute;
+  transition: transform 0.15s;
+  z-index: -1;
 }
 
-.random-character-name,
-.random-player-name {
-  height: 7%;
-  width: 50%;
-  margin: 5vh;
-  font-size: 2em;
-}
-
-.generate-created-button,
-.generate-random-button {
-  background-color: rgb(2, 211, 2);
-  height: 12%;
-  width: 50%;
-  font-size: 2em;
-  margin: 5vh;
-  cursor: pointer;
-}
-
-.generate-created-button:hover,
-.generate-random-button:hover {
-  background-color: rgb(1, 140, 1);
-}
-
-.input-container {
-  width: 80%;
-  height: 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+.rotated {
+  transform: rotate(69deg);
 }
 
 .create-character-name,
@@ -323,327 +364,46 @@ button {
 .alignment-select {
   width: 40%;
   height: 10%;
-  margin: 1%;
   font-size: 1.5em;
 }
 
-/* Character Sheet Styling */
-#created-character {
-  width: 729px;
-  height: 964px;
-  background-color: white;
-}
-
-hr {
-  border: 1px solid black;
-  margin: 0;
-}
-
-.top-box {
-  width: 100%;
-  height: 20%;
-  display: flex;
-  justify-content: center;
-  border: 2px solid black;
-}
-
-.character-name-info {
-  width: 45%;
-  display: flex;
-  justify-content: center;
-  flex-flow: column;
-  border-right: 2px solid black;
-  margin-right: 5px;
-}
-
-.character-name-placeholder{
-  position: relative;
-  width: 85%;
-  font-size: 12px;
-  left: 10px;
-}
-
-.character-name {
-  position: relative;
-  font-weight: bold;
-  font-size: 25px;
-  left: 10px;
-}
-
-.other-info {
-  width: 53%;
-  display: flex;
-  justify-content: space-between;
-  align-content: space-between;
-  flex-flow: wrap;
-}
-
-.info {
-  position: relative;
-  top: 12px;
-  height: 30%;
-  width: 50%;
-}
-
-.area {
-  font-size: 15px;
-}
-
-.placeholder {
-  font-size: 12px;
-}
-
-.bottom-box {
-  margin-top: 2%;
-  height: 78%;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  border: 2px solid black;
-}
-.stat-container {
-  width: 30%;
-  border-right: 2px solid black;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  font-size: 20px;
-}
-
-.base-stat {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 75%;
-  height: 12%;
-}
-
-.modifier {
-  font-size: 35px;
-  border: 1px solid black;
-  border-radius: 50px;
-  text-align: center;
-  width: 60%;
-  margin: 5px;
-}
-.stat {
-  font-size: 20px;
-  border-radius: 40px;
-  border: 1px solid black;
-  width: 20%;
-  text-align: center;
-}
-
-.other-stats {
-  width: 20%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.ac-inti,
-.speed-hitdice,
-.current-hitpoints {
-  margin: 20px;
-  display: flex;
-  justify-content: space-between;
-  flex-flow: wrap row;
-  width: 80%;
-  height: 10%;
-  font-size: 10px;
-}
-
-.ac,
-.inti,
-.speed,
-.hitdice,
-.current-HP,
-.total-HP {
-  border: 1px solid black;
-  border-radius: 20px;
-  width: 40%;
-  font-size: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.weapons-and-info {
-  width: 50%;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
-  text-align: center;
-}
-
-.character-info {
-  width: 100%;
-  height: 32%;
-  border-left: 2px solid black;
-  border-bottom: 2px solid black;
-}
-
-.traits,
-.ideals,
-.bonds,
-.flaws {
-  width: 100%;
-  height: 22%;
-  text-align: left;
-  border-top: 1px solid black;
-}
-
-.weapons {
-  width: 100%;
-  height: 65%;
-  border-left: 2px solid black;
-  border-top: 2px solid black;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
-}
-
-.weapon {
-  width: 100%;
-  height: 30%;
-  border-top: 1px solid black;
-  display: flex;
-  flex-flow: wrap row;
-  justify-content: space-around;
-}
-
-.weapon-name,
-.weapon-dice,
-.weapon-type {
-  position: relative;
-  top: 18px;
-  width: 33.33%;
-}
-
-.weapon-prop {
-  position: relative;
-  top: 18px;
-  width: 100%;
-}
-
-.one,
-.two {
-  border-bottom: 1px solid black;
-}
-
-.move-up {
-  top: 0px;
-}
-
-/* Map styling */
-#map {
-  height: 80vh;
-  width: 80vh;
-}
-
-.map-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 15;
-}
+/********** GameshopFinder styling **********/
 
 .map-background {
-  height: 90vh;
-  width: 90vh;
-  background: black;
-  border: 2px solid red;
+  height: 72%;
+  width: 90%;
+  background-image: url("./assets/group-paper-4.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  padding: 3%;
 }
 
-.map-exit-button {
+.merchant {
+  height: 75%;
+  width: 40%;
+  background-image: url("./assets/merchant.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#map {
+  height: 60vh;
+  width: 60vh;
+}
+
+.zip-code {
+  height: 9%;
+  width: 20%;
+  text-align: center;
   font-size: 2rem;
-  position: relative;
-  bottom: 47%;
-  left: 92%;
-  color: white;
-  cursor: pointer;
 }
 
 .hidden {
   display: none;
-}
-
-#description {
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-}
-
-#infowindow-content .title {
-  font-weight: bold;
-}
-
-#infowindow-content {
-  display: none;
-}
-
-#map #infowindow-content {
-  display: inline;
-}
-
-.pac-card {
-  margin: 10px 10px 0 0;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  background-color: #fff;
-  font-family: Roboto;
-}
-
-#pac-container {
-  padding-bottom: 12px;
-  margin-right: 12px;
-}
-
-.pac-controls {
-  display: inline-block;
-  padding: 5px 11px;
-}
-
-.pac-controls label {
-  font-family: Roboto;
-  font-size: 13px;
-  font-weight: 300;
-}
-
-#pac-input {
-  background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 400px;
-}
-
-#pac-input:focus {
-  border-color: #4d90fe;
-}
-
-#title {
-  color: #fff;
-  background-color: #a59362;
-  font-size: 25px;
-  font-style: oblique;
-  font-weight: 500;
-  padding: 6px 12px;
 }

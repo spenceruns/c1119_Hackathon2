@@ -4,7 +4,8 @@ function initializeApp() {
   var newCharacter = new CharacterCreator();
   var groupFinderPage = new GroupFinder();
   $("#gameshop-finder").on("click", showMap);
-  $(".map-exit-button").on("click", hideMap);
+  $(".exit-button").on("click", hideMap);
+  $(".search").on("click", getLatLngByZipcode);
 }
 
 function showMap() {
@@ -15,97 +16,61 @@ function hideMap() {
   $(".map-container").addClass("hidden");
 }
 
-function initMap() {
-  var shops = [{
-    name: "Brookhurst Hobbies",
-    link: "brookhursthobbies.com",
-    coord: {
-      lat: 33.785830,
-      lng: -117.957950
-    }
-  },
-    {
-      name: "The Guild House",
-      link: "theguildhousegames.com",
-      coord: {
-        lat: 33.883260,
-        lng: -118.125280
+  function getLatLngByZipcode() {
+    var geocoder = new google.maps.Geocoder();
+    var address = $(".zip-code").val();
+    var latitude = 0;
+    var longitude = 0;
+    geocoder.geocode({ 'address': address }, function (results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        latitude = results[0].geometry.location.lat();
+        longitude = results[0].geometry.location.lng();
+        var results = { lat: latitude, lng: longitude };
+        initMap(results);
+      } else {
+        console.log("Request failed.")
       }
-    },
-    {
-      name: "The War House",
-      link: "thewarhouselongbeach.com",
-      coord: {
-        lat: 33.804270,
-        lng: -118.199740
-      }
-    },
-    {
-      name: "Thalia Surf Shop",
-      link: "thaliasurf.com",
-      coord: {
-        lat: 33.5356,
-        lng: -117.7782
-      }
-    },
-    {
-      name: "Alakazam Comics",
-      link: "alakazamcomics.com",
-      coord: {
-        lat: 33.686690,
-        lng: -117.857910
-      }
-    },
-    {
-      name: "Bashams",
-      link: "bashams.com",
-      coord: {
-        lat: 33.4347,
-        lng: -117.6243
-      }
-    },
-    {
-      name: "The Game Chest",
-      link: "thegamechest.com",
-      coord: {
-        lat: 33.649979,
-        lng: -117.743721
-      }
-    },
-    {
-      name: "Comic Quest",
-      link: "comicquest.org",
-      coord: {
-        lat: 33.616450,
-        lng: -117.708690
-      }
-    },
-    {
-      name: "Magic and Monsters",
-      link: "magicandmonsters.com",
-      coord: {
-        lat: 33.616720,
-        lng: -117.681430
-      }
-    }]
+    });
+  }
+
+function initMap(response) {
+
+  var searchedZip = { lat: 33.634844, lng: -117.740513 };
+  if (response) {
+    searchedZip = response;
+  }
 
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
-    center: { lat: 33.6805592, lng: -117.8710307 }
+    center: searchedZip
   });
 
-  for (var index=0; index < shops.length; index++) {
-    getMarker(shops[index].coord, shops[index].name, shops[index].link);
+  var request = {
+    location: searchedZip,
+    radius: '40000',
+    query: 'dungeons and dragons'
+  };
+
+  service = new google.maps.places.PlacesService(map);
+  service.textSearch(request, callback);
+
+  function callback(results, status) {
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < results.length; i++) {
+        var place = results[i];
+        getMarker(results[i]);
+      }
+    }
   }
 
-  function getMarker(coord, name, link) {
+  function getMarker(place) {
     var marker = new google.maps.Marker({
-      position: coord,
+      position: place.geometry.location,
       map: map
     });
 
     var infowindow = new google.maps.InfoWindow({
-      content: `<h1>${name}</h1><div>${link}</div>`
+      content: `<h1>${place.name}</h1><div>${place.formatted_address}</div>`
     });
 
     marker.addListener("click", function(){
