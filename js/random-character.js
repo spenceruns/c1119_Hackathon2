@@ -10,25 +10,27 @@ class RandomCharacter {
   }
 
   makeRandomCharacterScreen() {
-    var $modalContent = $(".blacksmith");
+    let $modalContent = $(".blacksmith");
     $modalContent.empty();
+    let backButton = $("<div>").addClass("back-button");
     let inputContainer = $("<div>").addClass("input-container");
-    var characterNameInput = $("<input>").addClass("random-character-name input").attr("placeholder", "Character Name");
-    var playerNameInput = $("<input>").addClass("random-player-name input").attr("placeholder", "Player Name");
-    var generateButton = $("<div>").addClass("generate-button button-style");
+    let characterNameInput = $("<input>").addClass("random-character-name input").attr("placeholder", "Character Name");
+    let playerNameInput = $("<input>").addClass("random-player-name input").attr("placeholder", "Player Name");
+    let generateButton = $("<div>").addClass("generate-button button-style");
     let hammer = $("<div>").addClass("hammer");
     let generateText = $("<div>").addClass("generate-random-text").text("Generate");
     generateButton.append(hammer, generateText);
 
     inputContainer.append(characterNameInput, playerNameInput, generateButton);
-    $modalContent.append(inputContainer);
+    $modalContent.append(inputContainer, backButton);
+    $(characterNameInput).focus();
   }
 
   generateRandomCharacter() {
-    var randomRacePicker = Math.floor(Math.random() * 9);
-    var randomClassPicker = Math.floor(Math.random() * 12);
-    var randomBackgroundPicker = Math.floor(Math.random() * 3);
-    var randomAlignmentPicker = Math.floor(Math.random() * 9);
+    let randomRacePicker = Math.floor(Math.random() * 9);
+    let randomClassPicker = Math.floor(Math.random() * 12);
+    let randomBackgroundPicker = Math.floor(Math.random() * 3);
+    let randomAlignmentPicker = Math.floor(Math.random() * 9);
     this.selectedStats.characterName = $(".random-character-name").val();
     this.selectedStats.playerName = $(".random-player-name").val();
     this.selectedStats.raceSelected = this.races[randomRacePicker];
@@ -36,6 +38,6 @@ class RandomCharacter {
     this.selectedStats.backgroundSelected = this.backgrounds[randomBackgroundPicker];
     this.selectedStats.alignmentSelected = this.alignments[randomAlignmentPicker];
     this.selectedStats.weapons = this.weapons;
-    var newCharacter = new GeneratedCharacter(this.selectedStats);
+    let newCharacter = new GeneratedCharacter(this.selectedStats);
   }
 }

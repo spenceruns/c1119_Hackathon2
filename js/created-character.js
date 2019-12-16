@@ -12,46 +12,48 @@ class CreatedCharacter {
   }
 
   makeCreateCharacterScreen() {
-    var $modalContent = $(".blacksmith");
+    let $modalContent = $(".blacksmith");
     $modalContent.empty();
+    let backButton = $("<div>").addClass("back-button");
     let inputContainer = $("<div>").addClass("input-container");
-    var characterNameInput = $("<input>").addClass("create-character-name input").attr("placeholder", "Character Name");
-    var playerNameInput = $("<input>").addClass("create-player-name input").attr("placeholder", "Player Name");
+    let characterNameInput = $("<input>").addClass("create-character-name input").attr("placeholder", "Character Name");
+    let playerNameInput = $("<input>").addClass("create-player-name input").attr("placeholder", "Player Name");
     let generateButton = $("<div>").addClass("generate-button button-style");
     let hammer = $("<div>").addClass("hammer");
     let generateText = $("<div>").addClass("generate-created-text").text("Generate");
     generateButton.append(hammer, generateText);
-    var raceSelect = $("<select>").addClass("race-select").attr("name", "Race");
-    var raceInput = $("<option>").text("Race...");
+    let raceSelect = $("<select>").addClass("race-select").attr("name", "Race");
+    let raceInput = $("<option>").text("Race...");
     raceSelect.append(raceInput);
-    for (var index = 0; index < this.races.length; index++) {
+    for (let index = 0; index < this.races.length; index++) {
       raceInput = $("<option>").attr("value", index).text(this.races[index].name);
       raceSelect.append(raceInput);
     }
-    var classSelect = $("<select>").addClass("class-select");
-    var classInput = $("<option>").text("Class...");
+    let classSelect = $("<select>").addClass("class-select");
+    let classInput = $("<option>").text("Class...");
     classSelect.append(classInput);
-    for (var index = 0; index < this.classes.length; index++) {
+    for (let index = 0; index < this.classes.length; index++) {
       classInput = $("<option>").attr("value", index).text(this.classes[index].name);
       classSelect.append(classInput);
     }
-    var backgroundSelect = $("<select>").addClass("background-select");
-    var backgroundInput = $("<option>").text("Background...");
+    let backgroundSelect = $("<select>").addClass("background-select");
+    let backgroundInput = $("<option>").text("Background...");
     backgroundSelect.append(backgroundInput);
-    for (var index = 0; index < this.backgrounds.length; index++) {
-      var backgroundInput = $("<option>").attr("value", index).text(this.backgrounds[index].name);
+    for (let index = 0; index < this.backgrounds.length; index++) {
+      let backgroundInput = $("<option>").attr("value", index).text(this.backgrounds[index].name);
       backgroundSelect.append(backgroundInput);
     }
-    var alignmentSelect = $("<select>").addClass("alignment-select");
-    var alignmentInput = $("<option>").text("Alignment...");
+    let alignmentSelect = $("<select>").addClass("alignment-select");
+    let alignmentInput = $("<option>").text("Alignment...");
     alignmentSelect.append(alignmentInput);
-    for (var index = 0; index < this.alignments.length; index++) {
-      var alignmentInput = $("<option>").attr("value", index).text(this.alignments[index].name);
+    for (let index = 0; index < this.alignments.length; index++) {
+      let alignmentInput = $("<option>").attr("value", index).text(this.alignments[index].name);
       alignmentSelect.append(alignmentInput);
     }
 
     inputContainer.append(characterNameInput, playerNameInput, raceSelect, classSelect, backgroundSelect, alignmentSelect, generateButton);
-    $modalContent.append(inputContainer);
+    $modalContent.append(inputContainer, backButton);
+    $(characterNameInput).focus();
   }
 
   generateCreatedCharacter() {
@@ -62,6 +64,6 @@ class CreatedCharacter {
     this.selectedStats.backgroundSelected = this.backgrounds[$(".background-select").val()];
     this.selectedStats.alignmentSelected = this.alignments[$(".alignment-select").val()];
     this.selectedStats.weapons = this.weapons;
-    var newCharacter = new GeneratedCharacter(this.selectedStats);
+    let newCharacter = new GeneratedCharacter(this.selectedStats);
   }
 }

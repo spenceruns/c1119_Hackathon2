@@ -12,6 +12,7 @@ class GroupFinder {
     this.queryMeetupAPI = this.queryMeetupAPI.bind(this);
     this.createMeetupGroupDivs = this.createMeetupGroupDivs.bind(this);
     this.showClickedGroupInfo = this.showClickedGroupInfo.bind(this);
+    this.checkForEmtpyInputs = this.checkForEmtpyInputs.bind(this);
 
     // Add click handler to GroupFinder button
     $("#group-finder").click(this.render);
@@ -19,9 +20,9 @@ class GroupFinder {
 
   createQueryURL() {
     // Grab query params
-    let queryCity = $("#meetup-city-input").val();
-    let queryState = $("#meetup-state-input").val();
-    let queryRadius = $("#meetup-radius-input").val();
+    let queryCity = $("#meetup-city").val();
+    let queryState = $("#meetup-state").val();
+    let queryRadius = $("#meetup-radius").val();
 
     // Construct actual query
     let queryURLBase = "https://api.meetup.com/groups?key=" + this.meetupDotComAPIKey + "&sign=true&page=9&topic=dnd";
@@ -50,17 +51,28 @@ class GroupFinder {
     });
 
     let loadingModal = $("<div>").addClass("loading-modal").text("Loading...");
-    $("#group-finder-modal-body").empty().append(loadingModal);
+    $(".group-finder").append(loadingModal);
   }
 
   createMeetupGroupDivs(response) {
-    let $modalBody = $("#group-finder-modal");
+    let $modalBody = $(".group-finder");
     $modalBody.empty();
+    let $modalExitButton = $("<div>", {
+      class: "exit-button",
+      click: this.closeGroupFinderModal
+    })
+    $modalBody.append($modalExitButton);
 
     let $meetupGroupContainer = $("<div>", {
       id: "meetup-group-container"
     })
     $modalBody.append($meetupGroupContainer);
+
+    let $modalBackButton = $("<div>", {
+      class: "back-button",
+      click: this.render
+    })
+    $meetupGroupContainer.append($modalBackButton);
 
     // We want to create X number of shield divs on our bottom section
     this.meetupGroups = response.results;
@@ -111,8 +123,7 @@ class GroupFinder {
       html: "<strong>Organizer Name: </strong>" + clickedGroupInfo.organizer_name,
     })
     let $clickedGroupInfoContainerExitButton = $("<div>", {
-      class: "group-finder-modal-exit-button",
-      html: "&times;",
+      class: "exit-button",
       click: this.closeGroupInfoModal
     })
     let $clickedGroupInfoContainer = $("<div>", {
@@ -131,6 +142,7 @@ class GroupFinder {
   }
 
   render() {
+    $(".group-finder").remove();
     let $modalContainer = $("<div>", {
       class: "group-finder modal"
     })
@@ -140,40 +152,61 @@ class GroupFinder {
     $modalContainer.append($modal);
     this.$body.append($modalContainer);
 
+    let title = $("<div>").addClass("title").text("Group Finder");
+
     // Create exit button
     let $modalExitButton = $("<div>", {
       class: "exit-button",
-      html: "&times;",
       click: this.closeGroupFinderModal
     })
-    $modalContainer.append($modalExitButton);
+    $modalContainer.append($modalExitButton, title);
+
 
     // Create inputs
     let $meetupCityInput = $("<input>", {
-      class: "meetup-city input",
-      placeholder: "City Name",
-      value: "Irvine"
+      id: "meetup-city",
+      class: "input",
+      placeholder: "City (e.g. Irvine)",
     });
     let $meetupStateInput = $("<input>", {
-      class: "meetup-state input",
-      placeholder: "State Name",
-      value: "CA"
+      id: "meetup-state",
+      class: "input",
+      placeholder: "State (e.g. CA)",
     });
     let $meetupRadiusInput = $("<input>", {
-      class: "meetup-radius input",
-      placeholder: "Radius (in miles)",
-      value: "25"
+      id: "meetup-radius",
+      class: "input",
+      placeholder: "Radius (e.g. 25)",
     });
     let $meetupSearchButton = $("<div>", {
       class: "meetup-search button-style",
       text: "Search",
-      click: this.queryMeetupAPI
+      click: this.checkForEmtpyInputs
     })
     let $modalBody = $("<div>", {
       class: "input-container"
     })
     $modalBody.append($meetupCityInput, $meetupStateInput, $meetupRadiusInput, $meetupSearchButton);
     $modal.append($modalBody);
+    $meetupCityInput.focus();
+  }
+
+  checkForEmtpyInputs() {
+    let emptyField = false;
+    if ($("#meetup-city").val() === "") {
+      $("#meetup-city").css("border", "5px solid red");
+      emptyField = true;
+    }
+    if ($("#meetup-state").val() === "") {
+      $("#meetup-state").css("border", "5px solid red");
+      emptyField = true;
+    }
+    if ($("#meetup-radius").val() === "") {
+      $("#meetup-radius").css("border", "5px solid red");
+      emptyField = true;
+    }
+    if (emptyField) return false;
+    this.queryMeetupAPI()
   }
 
 }

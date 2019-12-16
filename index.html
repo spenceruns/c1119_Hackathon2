@@ -15,18 +15,25 @@
   <script src="./js/created-character.js"></script>
   <script src="./js/generated-character.js"></script>
   <script src="main.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCucrK_PpoYps_JHNc8tF-tm79s3JEtTW4&libraries=places&callback=initMap"
+      async defer></script>
 </head>
 <body>
-  <div class="hidden map-container">
+  <div class="banner"></div>
+  <div id="character-creator"><span>Character Forge</span></div>
+  <div id="gameshop-finder"><span>Gameshop Finder</span></div>
+  <div id="group-finder"><span>Group Locator</span></div>
+  <div class="hidden map-container modal">
+    <div class="title">Gameshop Finder</div>
     <div class="map-background">
-      <div class="exit-button">&times;</div>
+      <input class="zip-code" placeholder="Zip Code"></input>
+      <div class="search button-style">Search</div>
       <div id="map"></div>
     </div>
+    <div class="exit-button"></div>
+    <div class="merchant"></div>
   </div>
-  <div class="title-name"></div>
-    <div id="character-creator"><span>Character Forge</span></div>
-    <div id="gameshop-finder"><span>Gameshop Locator</span></div>
-    <div id="group-finder"><span>Group Finder</span></div>
     <!-- Character Sheet -->
     <form class="charsheet hidden" id="character-sheet">
       <header>
@@ -420,8 +427,5 @@
         </section>
       </main>
     </form>
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAida3l8h8mIi42Ru3iBSFFwmvQqxE_Ib0&libraries=places&callback=initMap"
-    async defer></script>
 </body>
 </html>

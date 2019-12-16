@@ -38,13 +38,14 @@ class CharacterCreator {
     this.$body.on("click", ".create-character-button", this.makeCreateCharacterScreen);
     this.$body.on("click", ".generate-random-text", this.generateRandomCharacter);
     this.$body.on("click", ".generate-created-text", this.generateCreatedCharacter);
+    this.$body.on("click", ".back-button", this.render);
     this.$body.on("mouseover", ".generate-button", this.rotateHammer);
     this.$body.on("mouseout", ".generate-button", this.unrotateHammer);
     this.$body.on("click", ".print-button", this.print);
   }
 
   getCharacterData() {
-    var getClasses = {
+    let getClasses = {
       dataType: "json",
       url: "https://api.open5e.com/classes/",
       method: "GET",
@@ -53,7 +54,7 @@ class CharacterCreator {
     };
     $.ajax(getClasses);
 
-    var getRaces = {
+    let getRaces = {
       dataType: "json",
       url: "https://api.open5e.com/races/",
       method: "GET",
@@ -62,7 +63,7 @@ class CharacterCreator {
     };
     $.ajax(getRaces);
 
-    var getBackgrounds = {
+    let getBackgrounds = {
       dataType: "json",
       url: "https://api.open5e.com/backgrounds/",
       method: "GET",
@@ -71,7 +72,7 @@ class CharacterCreator {
     };
     $.ajax(getBackgrounds);
 
-    var getWeapons = {
+    let getWeapons = {
       dataType: "json",
       url: "https://api.open5e.com/weapons/",
       method: "GET",
@@ -82,6 +83,7 @@ class CharacterCreator {
   }
 
   render() {
+    $(".character-forge").remove();
     this.dataFromAPI = {
       classes: this.classes,
       races: this.races,
@@ -89,18 +91,19 @@ class CharacterCreator {
       weapons: this.weapons,
       alignments: this.alignments
     };
-    var modalPage = $("<div>").addClass("character-forge modal");
-    var modalContent = $("<div>").addClass("blacksmith");
-    var randomButton = $("<div>").addClass("random-character-button button-style");
-    var randomCharacterText = $("<div>").addClass("random-character-text").text("Random Character");
+    let modalPage = $("<div>").addClass("character-forge modal");
+    let modalContent = $("<div>").addClass("blacksmith");
+    let randomButton = $("<div>").addClass("random-character-button button-style");
+    let randomCharacterText = $("<div>").addClass("random-character-text").text("Random Character");
     randomButton.append(randomCharacterText);
-    var createButton = $("<div>").addClass("create-character-button button-style");
-    var CreateCharacterText = $("<div>").addClass("create-character-text").text("Create Character");
+    let createButton = $("<div>").addClass("create-character-button button-style");
+    let CreateCharacterText = $("<div>").addClass("create-character-text").text("Create Character");
     createButton.append(CreateCharacterText);
-    var exitButton = $("<div>").addClass("exit-button").html("&times;");
+    let exitButton = $("<div>").addClass("exit-button");
+    let title = $("<div>").addClass("title").text("Character Forge");
 
     modalContent.append(randomButton, createButton);
-    modalPage.append(modalContent, exitButton);
+    modalPage.append(modalContent, exitButton, title);
     this.$body.append(modalPage);
   }
 
@@ -123,7 +126,7 @@ class CharacterCreator {
   }
 
   generateRandomCharacter() {
-    var emptyField = false;
+    let emptyField = false;
     if ($(".random-character-name").val() === "") {
       $(".random-character-name").css("border", "5px solid red");
       emptyField = true;
@@ -137,7 +140,7 @@ class CharacterCreator {
   }
 
   generateCreatedCharacter() {
-    var emptyField = false;
+    let emptyField = false;
     if ($(".create-character-name").val() === "") {
       $(".create-character-name").css("border", "5px solid red");
       emptyField = true;
